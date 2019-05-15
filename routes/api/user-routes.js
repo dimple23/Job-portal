@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const {register, login, getUserProfile } = require('../../controllers/user-controller');
 
-//const withAuth = require('../../middleware/authentication');
+const withAuth = require('../../middleware/authentication');
 
 // GET user profile '/api/user'
 router

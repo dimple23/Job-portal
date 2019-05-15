@@ -1,3 +1,9 @@
+/**************************************************************
+ * File name: jobs-controller.js
+ * This file imports data from 'models' folder  
+ * Returns: all the data in json format
+ ***************************************************************/
+
 /* eslint-disable no-underscore-dangle */
 
 const {

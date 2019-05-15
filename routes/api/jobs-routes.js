@@ -1,14 +1,23 @@
+
+/***************************************************************************************
+ * File name: jobs-routes.js
+ * 
+ * This file collects the other routes and provides the endpoint names
+ ***************************************************************************************/
+
+//Import express.router() functionality
 const router = require('express').Router();
 
-// import methods we exported from jobs-controller
+// Import methods we exported from jobs-controller
 const { getSavedJobs, createNewJob } = require('../../controllers/jobs-controller');
 
-
+//Import authentication method 
 const withAuth = require('../../middleware/authentication');
 
 
 // set up withAuth as router-level middleware this will ensure that authorization will be performed before both operations getSavedJobs() & createNewJob()
 router.use(withAuth);
+
 
 // create GET and POST route that matches '/api/job'
 router
@@ -16,4 +25,6 @@ router
   .get(getSavedJobs)
   .post(createNewJob);
 
+
+//Export router
 module.exports = router;

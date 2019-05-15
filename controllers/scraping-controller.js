@@ -1,9 +1,9 @@
-/**************************************************************
+/***************************************************************************************
  * File name: scraping-controller.js
  * 
  * This file scrapes job postings from dice.com and 
  * returns all the data in json format
- ***************************************************************/
+ ***************************************************************************************/
 
 const cheerio = require("cheerio");
 //const request = require("request");

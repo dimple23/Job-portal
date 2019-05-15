@@ -1,9 +1,10 @@
-/**************************************************************
+/***************************************************************************************
  * File name: user.js
  * 
- * This file creates User schema
- * Returns: all the data is returned in json format
- ***************************************************************/
+ * This file creates User schema 
+ * APIs to create password, check password validity, set full name
+ ***************************************************************************************/
+
 
 //Import dependencies
 const mongoose = require('mongoose');

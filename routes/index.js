@@ -1,7 +1,9 @@
 
-/* 
- * use this file to collect ALL routes (api and HTML) and package them
- */
+/***************************************************************************************
+ * File name: user-routes.js
+ * 
+ * This file to collect ALL routes (api and HTML) and package them
+ ***************************************************************************************/
 
 
 const router = require('express').Router();

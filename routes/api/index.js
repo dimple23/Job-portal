@@ -1,4 +1,9 @@
-// this file collects the other routes and provides the endpoint names
+/***************************************************************************************
+ * File name: index.js
+ * 
+ * This file collects the other routes and provides the endpoint names
+ ***************************************************************************************/
+
 
 const router = require('express').Router();
 const userRoutes = require('./user-routes');

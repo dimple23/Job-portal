@@ -1,3 +1,10 @@
+/***************************************************************************************
+ * File name: authentication.js
+ * 
+ * This file performs authentication using the secret saved in .env
+ ***************************************************************************************/
+
+
 /* eslint-disable no-underscore-dangle */
 
 const jwt = require('jsonwebtoken');

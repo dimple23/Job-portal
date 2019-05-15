@@ -1,4 +1,4 @@
-/**************************************************************
+/***************************************************************************************
  * File name: user-controller.js
  * 
  * This file imports jsonwebtoken for creating bearer token for authentication, 
@@ -6,7 +6,7 @@
  * import promise-handler from utils folder
  * and exposes 3 apis to getUserProfile, login and register the user into the app
  * Returns: all the data is returned in json format
- ***************************************************************/
+ ***************************************************************************************/
 
 
 /* eslint-disable no-underscore-dangle */
@@ -27,7 +27,7 @@ const secret = process.env.SECRET;
 // used when the POST route '/api/user/register' is hit
 const register = (req, res) => {
 
-  console.log("Inside POST '/api/user/register' -> register()");
+  console.log("Inside POST '/api/user/register' -> register");
 
   // get information about user out of req.body
   const { email, password, firstName, lastName } = req.body;
@@ -64,7 +64,7 @@ const register = (req, res) => {
 // this will run when user POSTs to '/api/user/login'
 const login = async (req, res) => {
 
-  console.log("Inside POST '/api/user/login' -> login()");
+  console.log("Inside POST '/api/user/login' -> login");
 
   // get email and password out of req.body
   const { email, password } = req.body;
@@ -123,7 +123,7 @@ const login = async (req, res) => {
 // GET '/api/user' (this will be run through auth middleware)
 const getUserProfile = async (req,res) => {
 
-  console.log("Inside GET user profile '/api/user' -> getUserProfile()");
+  console.log("Inside GET '/api/user' -> getUserProfile");
 
   const [userErr, userProfile] = await handle(User.findById(req._id));
 
@@ -134,6 +134,7 @@ const getUserProfile = async (req,res) => {
     res.status(200).json(userProfile);
   }
 }
+
 /*
 function updateUserWithNewJob(){
 

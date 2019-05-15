@@ -1,17 +1,19 @@
 /**************************************************************
  * File name: jobs-controller.js
- * This file imports data from 'models' folder  
- * Returns: all the data in json format
+ * 
+ * This file imports data from 'models' folder  and exposes 2 apis to 
+ * see all jobs & create/post a new job in DB
+ * Returns: all the data is returned in json format
  ***************************************************************/
 
 /* eslint-disable no-underscore-dangle */
 
-const {
-    User,
-    Jobs
-} = require('../models');
 
+//Import dependencies
+const User = require('../models').user;
+const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
+
 
 // GET savedjobs '/api/savedjobs' for a user
 const getSavedJobs = async (req, res) => {

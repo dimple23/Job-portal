@@ -2,7 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 
-
+require('dotenv').config();
 // set up secret for JWT (json web token)...typically you'd hide this in a .env
 //const secret = 'mysecretsshhhhh';
 const secret = process.env.SECRET;

@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-
 
 
 const { Schema } = mongoose;
-
-
 
 
 const JobPortalSchema = new Schema({
@@ -36,5 +32,6 @@ const JobPortalSchema = new Schema({
     //required: true
   }
 });
-var job= mongoose.model("job",JobPortalSchema)
-module.exports = job;
+
+
+module.exports = mongoose.model("jobs", JobPortalSchema);

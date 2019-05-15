@@ -1,14 +1,15 @@
 /**************************************************************
  * File name: scraping-controller.js
+ * 
  * This file scrapes job postings from dice.com and 
  * returns all the data in json format
  ***************************************************************/
 
 const cheerio = require("cheerio");
-const request = require("request");
+//const request = require("request");
 
 const diceJobs = async (req, res) => {
-
+/*
     // Set parameters as variables
     const query = req.params.query;
     const location = req.params.location;
@@ -42,7 +43,7 @@ const diceJobs = async (req, res) => {
             return res.status(200).json(jobs);
         }
     );
-
+*/
 };
 
 // Exports object

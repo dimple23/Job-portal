@@ -1,21 +1,39 @@
+/**************************************************************
+ * File name: user-controller.js
+ * 
+ * This file imports jsonwebtoken for creating bearer token for authentication, 
+ * import data from 'models' folder
+ * import promise-handler from utils folder
+ * and exposes 3 apis to getUserProfile, login and register the user into the app
+ * Returns: all the data is returned in json format
+ ***************************************************************/
+
+
 /* eslint-disable no-underscore-dangle */
 
-// import dependencies
+//Import dependencies
 const jwt = require('jsonwebtoken');
-const { User, Jobs } = require('../models');
+require('dotenv').config();
+
+const User = require('../models').user;
+const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
 
 
 // set up secret for JWT (json web token)...typically you'd hide this in a .env
-//const secret = 'mysecretsshhhhh';
 const secret = process.env.SECRET;
 
 // create function to register/create a new user
 // used when the POST route '/api/user/register' is hit
 const register = (req, res) => {
 
+  console.log("Inside POST '/api/user/register' -> register()");
+
   // get information about user out of req.body
   const { email, password, firstName, lastName } = req.body;
+
+  console.log(email + " : " + password + " : " + firstName + " : " +  lastName);
+
 
   // create a new user
   const user = new User({email, password, firstName, lastName});
@@ -45,6 +63,8 @@ const register = (req, res) => {
 // function for logging in a user
 // this will run when user POSTs to '/api/user/login'
 const login = async (req, res) => {
+
+  console.log("Inside POST '/api/user/login' -> login()");
 
   // get email and password out of req.body
   const { email, password } = req.body;
@@ -102,6 +122,8 @@ const login = async (req, res) => {
 // get user profile
 // GET '/api/user' (this will be run through auth middleware)
 const getUserProfile = async (req,res) => {
+
+  console.log("Inside GET user profile '/api/user' -> getUserProfile()");
 
   const [userErr, userProfile] = await handle(User.findById(req._id));
 

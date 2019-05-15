@@ -112,6 +112,12 @@ const getUserProfile = async (req,res) => {
     res.status(200).json(userProfile);
   }
 }
+/*
+function updateUserWithNewJob(){
+
+  const [userErr, userProfile] = await handle(User.findById(req._id));
+
+}*/
 
 // export our methods
 module.exports = {

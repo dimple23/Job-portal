@@ -18,3 +18,19 @@ db.job.find({
   user:[{"userid": "5cdaf80515879348c67653ea"}]
 
 })
+
+db.getCollection('user').aggregate([
+  {
+      $lookup: {
+          from: "job",
+          localField: "title",
+          foreignField: "userid",
+          as: "user_docs"
+      }
+  },
+  {
+      $match: {
+          "user_docs": {$ne: []}
+      }
+  }
+])

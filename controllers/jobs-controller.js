@@ -8,7 +8,7 @@
 
 const {
     User,
-    Jobs
+    Job
 } = require('../models');
 
 const handle = require('../utils/promise-handler');
@@ -30,42 +30,55 @@ const getSavedJobs = async (req, res) => {
 // CREATE/POST jobs for a user '/api/newjob'
 const createNewJob = async (req, res) => {
 
+  // get information about user out of req.body
+  const { title, jobtype, position, location, company, description } = req.body;
+
+    //create new job posting
+    const newJob  = userProfile.job.create(req.body);
+    //   const newJob = new Job({title, jobtype, position, location, company, description});
+    
+    console.log("User id (req._id) = " + req._id);
+
+    //updateUserWithNewJob(newJob);
+
+    /*
     const [userFindErr, userProfile] = await handle(User.findById(req._id));
 
     if (userFindErr) {
         return res.status(500).json(userFindErr);
     }
 
-    // create new job posting
-    //   const newBookmark = userProfile.bookmarks.create(req.body);
+    //create new job posting
+      const newJob  = userProfile.job.create(req.body);
 
-    //   return User.findOneAndUpdate(
-    //     {
-    //       _id: req._id,
-    //       'bookmarks.link': {
-    //         $ne: req.body.link
-    //       }
-    //     },
-    //     {
-    //       $addToSet: { bookmarks: newBookmark }
-    //     },
-    //     {
-    //       new: true
-    //     }
-    //   )
-    //     .then(userInfo => {
-    //       if (userInfo !== null) {
-    //         return res.json(userInfo);
-    //       }
+      return User.findOneAndUpdate(
+        {
+          _id: req._id,
+          'job.link': {
+            $ne: req.body.link
+          }
+        },
+        {
+          $addToSet: { job: newjob }
+        },
+        {
+          new: true
+        }
+      )
+        .then(userInfo => {
+          if (userInfo !== null) {
+            return res.json(userInfo);
+          }
 
-    //       return res.json({
-    //         message: 'Link already saved'
-    //       });
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //       return res.json(err);
-    //     });
+          return res.json({
+            message: 'you already saved this job'
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          return res.json(err);
+        });
+        */
 };
 
 module.exports = {

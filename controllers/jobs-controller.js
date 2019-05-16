@@ -8,6 +8,13 @@
 
 /* eslint-disable no-underscore-dangle */
 
+<<<<<<< HEAD
+=======
+// const {
+//     User,
+//     Job
+// } = require('../models');
+>>>>>>> ce821cd95f8b24a88d21b6422de8623e3f4538b8
 
 //Import dependencies
 const User = require('../models').user;

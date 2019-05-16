@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="style.css">
+<title>User Profile</title>
+</head>
+<body>
+
+    <div class="container mt-5 mb-5 pb-5">
+
+        <div class="card">
+            <h4 class="card-header bg-info text-light p-4">
+                <strong>Create Your Profile</strong>
+            </h4>
+            <div class="card-body">
+
+                <!-- start form -->
+                <form>
+
+                    <div class="row">
+
+                        <div class="col-4">
+                            <!-- First Name -->
+                            <div class="form-group">
+                                <label for="firstName-input"><strong>First Name*</strong></label>
+                                <input class="form-control" type="text" id="firstName-input" placeholder="Enter your First Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <!-- Last Name -->
+                            <div class="form-group">
+                                <label for="lastName-input"><strong>Last Name*</strong></label>
+                                <input class="form-control" type="text" id="lastName-input" placeholder="Enter your Last Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <!-- Phone No -->
+                            <div class="form-group">
+                                <label for="phoneNo-input"><strong>Contact</strong></label>
+                                <input class="form-control" type="text" id="phoneNo-input" placeholder="Enter your Phone number"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col-6">
+                            <!-- Email Id -->
+                            <div class="form-group">
+                                <label for="emailId-input"><strong>Email Id*</strong></label>
+                                <input class="form-control" type="text" id="emailId-input" placeholder="Enter your Email Id"/>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="password-input"><strong>Password*</strong></label>
+                                <input class="form-control" type="password" id="password-input" placeholder="Password" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col-6">
+                            <!-- User Location -->
+                            <div class="form-group">
+                                <label for="location-input"><strong>Your Location</strong></label>
+                                <input class="form-control" type="text" id="location-input" placeholder="Your Location"/>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <!-- Preferred Location -->
+                            <div class="form-group">
+                                <label for="prefLocation-input"><strong>Preferred Job Location</strong></label>
+                                <input class="form-control" type="text" id="prefLocation-input" placeholder="Preferred Job Location"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Skills  -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-group mt-3">
+                                <label for="skills-input"><strong>Technical Skills</strong></label>
+                                <div class="border">
+                                    
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="node">
+                                        <label class="form-check-label" for="inlineCheckbox1">Node</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="express">
+                                        <label class="form-check-label" for="inlineCheckbox2">Express</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="react">
+                                        <label class="form-check-label" for="inlineCheckbox3">React</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="HTML-CSS">
+                                        <label class="form-check-label" for="inlineCheckbox4">HTML/CSS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="javascript">
+                                        <label class="form-check-label" for="inlineCheckbox5">JavaScript</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="jQuery">
+                                        <label class="form-check-label" for="inlineCheckbox6">JQuery</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="AJAX">
+                                        <label class="form-check-label" for="inlineCheckbox7">AJAX</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="MySQL">
+                                        <label class="form-check-label" for="inlineCheckbox8">MySQL</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="Sequelize">
+                                        <label class="form-check-label" for="inlineCheckbox9">Sequelize</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="MongoDB">
+                                        <label class="form-check-label" for="inlineCheckbox10">JavaScript</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="Mongoose">
+                                        <label class="form-check-label" for="inlineCheckbox11">Mongoose</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="Java">
+                                        <label class="form-check-label" for="inlineCheckbox12">Java</label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-3">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="OOPs">
+                                        <label class="form-check-label" for="inlineCheckbox13">OOPs</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <!-- Link your resume -->
+                            <div class="form-group">
+                                <label for="resume-input"><strong>Link Your Resume Here</strong></label>
+                                <input class="form-control" type="text" id="resume-input" placeholder="URL to your resume" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <!-- Link your cover letter -->
+                            <div class="form-group">
+                                <label for="coverLetter-input"><strong>Link Your Cover Letter Here</strong></label>
+                                <input class="form-control" type="text" id="coverLetter-input" placeholder="URL to your cover letter" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <!-- submit button -->
+                            <button class="btn btn-block btn-info mt-5 mb-5 p-3" type="submit">
+                                <h5><strong>Update Profile</strong></h5>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- end form -->
+
+            </div>
+
+        </div>
+        <!-- End of Card -->
+
+
+              
+
+
+              
+
+              
+
+        
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

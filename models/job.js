@@ -14,7 +14,7 @@ const {
 //Create fields for the 'JobPortalSchema' collection
 const JobPortalSchema = new Schema({
 
-  title: {
+  jobTitle: {
     type: String,
     required: true
   },
@@ -27,6 +27,10 @@ const JobPortalSchema = new Schema({
     type: String,
     required: true
   },
+  salary: {
+    type: String,
+    default: 'Unavailable'
+  },
   location: {
     type: String,
     required: true
@@ -35,9 +39,20 @@ const JobPortalSchema = new Schema({
     type: String,
     // required :true
   },
+
+  link: {
+    type: String
+  },
   description: {
     type: String,
     //required: true
+  },
+  posted: {
+    type: String
+  },
+  dateAdded: {
+    type: Date,
+    default: Date.now
   }
 });
 

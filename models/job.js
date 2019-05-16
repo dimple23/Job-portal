@@ -18,14 +18,13 @@ const JobPortalSchema = new Schema({
     type: String,
     required: true
   },
-
   jobtype: {
     type: String,
-    required: true
+    default: 'Unavailable'
   },
   position: {
     type: String,
-    required: true
+    default: 'Unavailable'
   },
   salary: {
     type: String,
@@ -33,22 +32,23 @@ const JobPortalSchema = new Schema({
   },
   location: {
     type: String,
-    required: true
+    default: 'Unavailable'
   },
   company: {
     type: String,
-    // required :true
+    default: 'Unavailable'
   },
-
   link: {
-    type: String
+    type: String,
+    default: 'Unavailable'
   },
   description: {
     type: String,
-    //required: true
+    default: 'Unavailable'
   },
   posted: {
-    type: String
+    type: String,
+    default: 'Unavailable'
   },
   dateAdded: {
     type: Date,

@@ -58,7 +58,6 @@ var axios = require("axios");
 
  }
 
-
  // Exports object
 module.exports = {
   diceJobs

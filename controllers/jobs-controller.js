@@ -8,15 +8,6 @@
 
 /* eslint-disable no-underscore-dangle */
 
-<<<<<<< HEAD
-=======
-// const {
-//     User,
-//     Job
-// } = require('../models');
->>>>>>> ce821cd95f8b24a88d21b6422de8623e3f4538b8
-
-//Import dependencies
 const User = require('../models').user;
 const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
@@ -25,15 +16,15 @@ const handle = require('../utils/promise-handler');
 // GET savedjobs '/api/jobs' for a user
 const getSavedJobs = async (req, res) => {
 
-  console.log("Inside GET '/api/jobs' -> getSavedJobs");
+ console.log("Inside GET '/api/jobs' -> getSavedJobs");
 
-  const [userErr, jobsData] = await handle(User.findById(req._id));
+ const [userErr, jobsData] = await handle(User.findById(req._id));
 
-  if (userErr) {
-    return res.json(500).json(userErr);
-  }
-  //jobsData obj will have all the job details listed 1-by-1
-  return res.status(200).json(jobsData);
+ if (userErr) {
+   return res.json(500).json(userErr);
+ }
+ //jobsData obj will have all the job details listed 1-by-1
+ return res.status(200).json(jobsData);
 
 };
 
@@ -41,81 +32,81 @@ const getSavedJobs = async (req, res) => {
 // CREATE/POST jobs for a user '/api/jobs'
 const createNewJob = async (req, res) => {
 
-  console.log("Inside POST '/api/jobs' -> createNewJob");
+ console.log("Inside POST '/api/jobs' -> createNewJob");
 
 
-  //Fields required (which ever is available):
-  //jobTitle, jobtype, position, salary, location, company, link, description, posted
+ //Fields required (which ever is available):
+ //jobTitle, jobtype, position, salary, location, company, link, description, posted
 
-  // Create a new user using req.body
-  Jobs.create(req.body)
+ // Create a new user using req.body
+ Jobs.create(req.body)
 
-    .then(function (dbNewJobData) {
+   .then(function (dbNewJobData) {
 
-      // If saved successfully, send the the new job document to the client
-      pushToSavedJobsArray(req._id, dbNewJobData._id);
+     // If saved successfully, send the the new job document to the client
+     pushToSavedJobsArray(req._id, dbNewJobData._id);
 
-      res.status(200).json({
-        success: true,
-        message: "Job successfully added!"
-      });
+     res.status(200).json({
+       success: true,
+       message: "Job successfully added!"
+     });
 
-    })
-    .catch(function (err) {
-      // If an error occurs, send the error to the client
-      console.log(err);
+   })
+   .catch(function (err) {
+     // If an error occurs, send the error to the client
+     console.log(err);
 
-      res.status(500).json({
-        success: false,
-        message: "Error adding job details to DB, please try again."
-      });
+     res.status(500).json({
+       success: false,
+       message: "Error adding job details to DB, please try again."
+     });
 
-    });
+   });
 
 };
 
 
 async function pushToSavedJobsArray(userId, newJobId) {
 
-  console.log("Inside pushToSavedJobsArray()");
+ console.log("Inside pushToSavedJobsArray()");
 
-  //Update User table with job id of the current saved job
-  const [userFindErr, userData] = await handle(User.findById(userId));
+ //Update User table with job id of the current saved job
+ const [userFindErr, userData] = await handle(User.findById(userId));
 
-  // console.log("------------------------------");
-  // console.log(userData);
-  // console.log("------------------------------");
+ // console.log("------------------------------");
+ // console.log(userData);
+ // console.log("------------------------------");
 
-  if (userFindErr) {
-    return (userFindErr);
-  }
+ if (userFindErr) {
+   return (userFindErr);
+ }
 
-  return User.findOneAndUpdate({
-      _id: userId
-    }, {
-      $push: {
-        savedJobsArray: newJobId
-      }
-    }, {
-      new: true
-    }).then(userInfo => {
-      if (userInfo !== null) {
-        return userInfo;
-      }
+ return User.findOneAndUpdate({
+     _id: userId
+   }, {
+     $push: {
+       savedJobsArray: newJobId
+     }
+   }, {
+     new: true
+   }).then(userInfo => {
+     if (userInfo !== null) {
+       return userInfo;
+     }
 
-      return res.json({
-        message: 'Job already saved!'
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      return (err);
-    });
+     return res.json({
+       message: 'Job already saved!'
+     });
+   })
+   .catch(err => {
+     console.log(err);
+     return (err);
+   });
 
 }
 
 
 module.exports = {
-  createNewJob,
-  getSavedJobs
+ createNewJob,
+ getSavedJobs
 };

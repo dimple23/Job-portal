@@ -7,49 +7,57 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-  <link rel="stylesheet" href="./css/style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Inspire</title>
 </head>
 
 <body>
-
+  
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Inspire</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+    <a class="navbar-brand">
+      <span class="animated">🅸</span>
+      <span class="animated">🅽</span>
+      <span class="animated">🆂</span>
+      <span class="animated">🅿 </span>
+      <span class="animated">🅸</span>
+      <span class="animated">🆁 </span>
+      <span class="animated">🅴</span>
+
+    </a>
+    <!-- <button id="saveJob" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <!-- <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" href="#">Search Jobs </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Explore Companies </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul> -->
-      <form class="form-inline">
+
+      <form class="form-inline ">
         <input class="form-control mr-sm-2" type="search" placeholder="Job Location" aria-label="Search">
       </form>
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Profile</button>
       <label>User Name</label>
-      
+
     </div>
   </nav>
 
+  <div class="jobbg"></div>
 
   <div class="container my-5">
+
     <div class="row">
       <!-- left column - POST INFO -->
       <div class="col-12 col-md-8">
-        
+
         <h3 id="content-title">Jobs Post</h3>
         <ul id="post-feed" class="list-group">
+          <li>
+            <button class="saveJob"><span>Save 📌
+
+                <i class="fa fa-thumb-tack" aria-hidden="false">
+
+                </i></span></button></li>
           <!-- posts go here -->
         </ul>
       </div>
@@ -120,9 +128,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="/assets/js/app.js"></script>
+  
+  <script src="assets/js/app.js"></script>
 </body>
 
-</html> 
-
-
+</html>

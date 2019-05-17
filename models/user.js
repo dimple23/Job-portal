@@ -46,19 +46,60 @@ const UserSchema = new Schema({
   contact: String,
   userLocation: String,
   preferredLocation: String,
-  node: Boolean,
-  express: Boolean,
-  react: Boolean,
-  HTMLCSS: Boolean,
-  javascript: Boolean,
-  jQuery: Boolean,
-  AJAX: Boolean,
-  mySQL: Boolean,
-  sequelize: Boolean,
-  mongoDB: Boolean,
-  mongoose: Boolean,
-  java: Boolean,
-  OOPs: Boolean,
+
+  node: {
+    type: Boolean,
+    default: false
+  },
+  express: {
+    type: Boolean,
+    default: false
+  },
+  react: {
+    type: Boolean,
+    default: false
+  },
+  HTMLCSS: {
+    type: Boolean,
+    default: false
+  },
+  javascript: {
+    type: Boolean,
+    default: false
+  },
+  jQuery: {
+    type: Boolean,
+    default: false
+  },
+  AJAX: {
+    type: Boolean,
+    default: false
+  },
+  mySQL: {
+    type: Boolean,
+    default: false
+  },
+  sequelize: {
+    type: Boolean,
+    default: false
+  },
+  mongoDB: {
+    type: Boolean,
+    default: false
+  },
+  mongoose: {
+    type: Boolean,
+    default: false
+  },
+  java: {
+    type: Boolean,
+    default: false
+  },
+  OOPs: {
+    type: Boolean,
+    default: false
+  },
+  
   resumeLink: String,
   coverLetterLink: String,
 
@@ -74,10 +115,10 @@ const UserSchema = new Schema({
 
 
 
-// set up ability to create password (FOR CREATING A USER OR UPDATING A USER'S PASSWORD)
+// set up ability to create password (FOR CREATING A USER PASSWORD)
 UserSchema.pre('save', function createPassword(next) {
 
-  console.log("Inside UserSchema.pre()");
+  console.log("Inside UserSchema.pre() -> save -> createPassword()");
 
   if (this.isNew || this.isModified('password')) {
 
@@ -98,6 +139,33 @@ UserSchema.pre('save', function createPassword(next) {
     });
   }
 });
+
+
+// set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
+UserSchema.pre('update', function updatePassword(next) {
+
+  console.log("Inside UserSchema.pre() -> save -> updatePassword()");
+
+  // if (this.isNew || this.isModified('password')) {
+
+    // save reference to what "this" means
+    const document = this;
+
+    // run bcrypt's hash method the create password
+    bcrypt.hash(this.password, saltRounds, (err, hashedPassword) => {
+      
+      if (err) {
+        next(err);
+      }
+      else {
+        // save new password
+        document.password = hashedPassword;
+        next();
+      }
+    });
+
+});
+
 
 
 // for logging in, we need to compare the incoming password with the hashed password

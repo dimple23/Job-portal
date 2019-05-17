@@ -227,16 +227,12 @@ function formUserProfileUpdated() {
 
   console.log("Inside formUserProfileUpdated()");
 
-  // event.preventDefault();
+  event.preventDefault();
 
-  // const userData = {
-  //   email: $('#email-input-login')
-  //     .val()
-  //     .trim(),
-  //   password: $('#password-input-login')
-  //     .val()
-  //     .trim()
-  // };
+  const userData = {
+    firstName: $('#firstName-input').val().trim(),
+    password: $('#password-input-login').val().trim()
+  };
 
 }
 

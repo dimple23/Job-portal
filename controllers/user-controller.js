@@ -180,60 +180,30 @@ const updateUserProfile = async (req, res) => {
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
 
 
-
-  // get information about user out of req.body
-  const {
-    firstName,
-    lastName,
-    password
-  } = req.body;
-
-  if (firstName || lastName) {
-
-    // //First get the document related to req.id, so that we can modify full name if firstName/lastName
-    // const [userErr, userProfile] = await handle(User.findById(req._id));
-
-    // if (userErr) {
-    //   res.status(500).json(userErr);
-    // } else {
-    //   res.status(200).json(userProfile);
-    // }
-  }
-
-  const [userErr, userProfile] = await handle(User.findOneAndUpdate(req._id, req.body, {
-    new: true
-  }));
+  const [userErr, userProfile] = await handle(User.findById(req._id));
 
   if (userErr) {
     res.status(500).json(userErr);
   } else {
 
-    //If user wants to update first name, then update full name accordingly
-    if (firstName) {
-      console.log("firstName to be updated");
-      let newFullName = `${firstName} ${userProfile.lastName}`;
-      console.log(newFullName);
+    for (let key in req.body) {
+      userProfile[key] = req.body[key];
     }
 
-    //If user wants to update last name, then update full name accordingly
-    if (lastName) {
-      console.log("lastName to be updated");
-      let newFullName = `${userProfile.firstName} ${lastName}`;
-      console.log(newFullName);
-    }
-
-    //If user wants to update password, then call UserSchema.pre function
-    if (password) {
-      console.log("password to be updated");
-
-
-    }
-
-    res.status(200).json(userProfile);
+    userProfile.save(err => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({
+          success: false,
+          message: "Error updating new data."
+        });
+      } else {
+        res.status(200).json(userProfile);
+      }
+    });
   }
 
 } //End of updateUserProfile()
-
 
 
 

@@ -36,7 +36,7 @@ router
 // PUT update user '/api/user/update'
 router
   .route('/update')
-  .put(updateUserProfile);
+  .put(withAuth,updateUserProfile);
 
 
 module.exports = router;

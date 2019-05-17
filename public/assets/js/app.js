@@ -377,7 +377,7 @@ $(document).ready(function () {
 
   $('#logout').on('click',logout); //testing
 
-  $('#userProfileId').on('click', viewUserProfilePage);
+  //$('#userProfileId').on('click', viewUserProfilePage);
 
   $('#inputLocationId').on('submit', setPreferredLocation);
 

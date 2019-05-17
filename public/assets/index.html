@@ -49,19 +49,44 @@
     <div class="row">
       <!-- left column - POST INFO -->
       <div class="col-12 col-md-8">
+          <div class="container">
 
         <h3 id="content-title">Jobs Post</h3>
         <ul id="post-feed" class="list-group">
-          <li>
-            <button class="saveJob"><span>Save 📌
+            <div class="col-12 col-md-8">
+            <ul class="nav nav-tabs">
+    
+                <li><a data-toggle="tab" href="#newjoblist">Jobs</a></li>
+                <li><a data-toggle="tab" href="#savedjoblist">Saved Jobs</a></li>
+                
+              </ul>
+            
+              <div class="tab-content">
+          
+                    <ul id="post-feed" class="list-group">
 
-                <i class="fa fa-thumb-tack" aria-hidden="false">
+                        <li>
+                           <!-- posts go here -->
+                            <button class="saveJob"><span>Save 📌
+                
+                                <i class="fa fa-thumb-tack" aria-hidden="false">
+                
+                                </i></span></button></li>
 
-                </i></span></button></li>
-          <!-- posts go here -->
-        </ul>
+                
+                 </ul>
+                    </div>
+                 
+                </div>
+
+                    <ul id="savedjoblist" class="list-group">
+                    </ul>
+                
+          
+         
+       
       </div>
- 
+ </div>
       <!-- end left -->
 
       <!-- right column - USER INFO -->
@@ -129,6 +154,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   
   <script src="assets/js/app.js"></script>
 </body>

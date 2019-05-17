@@ -1,41 +1,18 @@
 // get ref to section on page
 const $postFeed = $('#post-feed');
 
-// function to GET reddit posts from api
-function getRedditPosts() {
-  $.ajax({
-    url: '/api/scrape',
-    method: 'GET'
-  })
-    .then(printPosts)
-    .catch(err => {
-      console.log(err);
-    });
-}
 
-// function to print posts/bookmarks to page
-function printPosts(postData) {
-  $postFeed.empty();
-  postData.forEach(({ title, link }) => {
-    if (link.startsWith('/r')) {
-      link = `https://reddit.com${link}`;
-    }
-    $('<li>')
-      .data({ title, link })
-      .addClass('list-group-item row d-flex align-items-center')
-      .append(`<div class='col-12 col-md-8'><a href=${link} target='_blank'>${title}</a></div>`)
-      .append(
-        `<div class='col text-right'><button class='btn btn-sm btn-outline-danger save-bookmark'>Bookmark this!</button></div>`
-      )
-      .appendTo($postFeed);
-  });
-}
-
-getRedditPosts();
+/*****************************************************************************************
+ * Function: signUp(event)
+ * This function is triggerend when new user tries to register him/herself to the app
+ * It stores user info to the DB and creates token
+ *****************************************************************************************/
 
 function signUp(event) {
+
   event.preventDefault();
 
+  //Get user input in an object
   const userData = {
     firstName: $('#first-name-input')
       .val()
@@ -51,29 +28,37 @@ function signUp(event) {
       .trim()
   };
 
+  //If even a single input is issing then through an error
   if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
     return swal({
-      title: "You're missing something!",
+      title: "All data is mandatory to be filled!",
       icon: 'error'
     });
   }
 
+  //AJAX POST request to add data of user into the database
   $.ajax({
-    url: '/api/user/register',
-    method: 'POST',
-    data: userData
-  })
-    .then(function(userData) {
+      url: '/api/user/register',
+      method: 'POST',
+      data: userData
+    })
+    .then(function (userData) {
       console.log(userData);
       return swal({
         title: userData.message,
         icon: 'success'
       });
     })
-    .then(function() {
+    .then(function () {
       // custom bootstrap method
-      $('#signup').tab('hide');
-      $('#login').tab('show');
+      // $('#signup').tab('hide'); //It's giving error
+      // $('#login').tab('show');
+      $('.loginRegisterFormClass').hide();
+
+      //Set user name field to the current user
+      $('#userName-labelId').text(`${userData.firstName} ${userData.lastName}`);
+      $("#userProfileId").show();
+
     })
     .catch(err => {
       console.log(err);
@@ -82,10 +67,18 @@ function signUp(event) {
         icon: 'error'
       });
     });
-}
 
-// log user in
+} //End of signUp(event)
+
+
+/*****************************************************************************************
+ * Function: login(event)
+ * This function is triggerend when already registered user tries to login to the app
+ * It verifies user info from the DB and fetches user data
+ *****************************************************************************************/
+
 function login(event) {
+
   event.preventDefault();
 
   const userData = {
@@ -105,11 +98,11 @@ function login(event) {
   }
 
   $.ajax({
-    url: '/api/user/login',
-    method: 'POST',
-    data: userData
-  })
-    .then(function(accessToken) {
+      url: '/api/user/login',
+      method: 'POST',
+      data: userData
+    })
+    .then(function (accessToken) {
       console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       getUserProfile();
@@ -123,30 +116,50 @@ function login(event) {
     });
 }
 
-// log user out
+
+/*****************************************************************************************
+ * Function: logout()
+ * This function is triggerend when user wants to logout of the app
+ * Here the respective bearer token of the user will be deleted
+ *****************************************************************************************/
+
 function logout() {
+
   localStorage.removeItem('accessToken');
+
+  $('#email-input-login').text("");
+  $('#password-input-login').text("");
+
   $('#user-info').hide();
+  $("#userProfileId").hide();
   $('#user-tabs, #forms, #right-column-title').show();
   $('#login').tab('show');
+
+
 }
 
-// get user profile
+/*****************************************************************************************
+ * Function: getUserProfile()
+ * This function reads the respective bearer token from local storage to validate the user
+ *****************************************************************************************/
+
 function getUserProfile() {
+
   const token = localStorage.getItem('accessToken');
 
   $.ajax({
-    url: '/api/user',
-    method: 'GET',
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  })
-    .then(function(userData) {
+      url: '/api/user',
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    .then(function (userData) {
       console.log(userData);
       $('#user-tabs, #forms, #right-column-title').hide();
       $('#user-info').show();
       $('#full-name').text(userData.fullName);
+      $("#userProfileId").show();
     })
     .catch(err => {
       console.log(err);
@@ -154,6 +167,68 @@ function getUserProfile() {
     });
 }
 
+
+/*****************************************************************************************
+ * Function: viewUserProfilePage()
+ * This function is triggered when user wants to view/update his/her profile
+ *****************************************************************************************/
+
+// function viewUserProfilePage() {
+
+//   window.location.href = "./user-profile.html";
+// }
+
+
+/*****************************************************************************************
+ * Function: setPreferredLocation()
+ * This function will store the user's preferred job location in the database
+ *****************************************************************************************/
+
+function setPreferredLocation() {
+
+}
+
+
+/*
+// function to GET reddit posts from api
+function getRedditPosts() {
+  $.ajax({
+    url: '/api/scrape',
+    method: 'GET'
+  })
+    .then(printPosts)
+    .catch(err => {
+      console.log(err);
+    });
+}
+*/
+/*
+// function to print posts/bookmarks to page
+function printPosts(postData) {
+  $postFeed.empty();
+  postData.forEach(({ title, link }) => {
+    if (link.startsWith('/r')) {
+      link = `https://reddit.com${link}`;
+    }
+    $('<li>')
+      .data({ title, link })
+      .addClass('list-group-item row d-flex align-items-center')
+      .append(`<div class='col-12 col-md-8'><a href=${link} target='_blank'>${title}</a></div>`)
+      .append(
+        `<div class='col text-right'><button class='btn btn-sm btn-outline-danger save-bookmark'>Bookmark this!</button></div>`
+      )
+      .appendTo($postFeed);
+  });
+}
+*/
+/*
+getRedditPosts();
+*/
+
+
+
+
+/*
 // function to save bookmarks
 function saveBookmark() {
   // get information from <li> that this button lives in (the parent)
@@ -190,6 +265,9 @@ function saveBookmark() {
     });
 }
 
+*/
+
+/*
 function getBookmarks() {
   // retrieve token
   const token = localStorage.getItem('accessToken');
@@ -217,7 +295,8 @@ function getBookmarks() {
       handleError(err.responseJSON);
     });
 }
-
+*/
+/*
 function handleError(errorData) {
   swal({
     title: 'Please login',
@@ -225,19 +304,40 @@ function handleError(errorData) {
     icon: 'warning'
   }).then(() => {
     $('#user-info').hide();
+    $("#userProfileId").hide();
     $('#user-tabs, #forms, #right-column-title').show();
     $('#login').tab('show');
   });
 }
+*/
 
-$(document).ready(function() {
-  $('#user-info').hide();
+
+
+
+
+
+$(document).ready(function () {
+
+  //Hide logout button before login/register
+  $('#user-info').hide(); 
+
+  //Hide link to user profile
+  $("#userProfileId").hide();
+
   $('#signup-form').on('submit', signUp);
-  $('#login-form').on('submit', login);
-  $('#logout').on('click',logout);
-  $('#get-bookmarks').on('click', getBookmarks);
-  $('#get-posts').on('click', getRedditPosts);
-  $postFeed.on('click', '.save-bookmark', saveBookmark);
+
+  $('#login-form').on('submit', login); 
+
+  $('#logout').on('click',logout); //testing
+
+  // $('#userProfileId').on('click', viewUserProfilePage);
+
+  $('#inputLocationId').on('submit', setPreferredLocation);
+
+
+  // $('#get-bookmarks').on('click', getBookmarks);
+  // $('#get-posts').on('click', getRedditPosts);
+  // $postFeed.on('click', '.save-bookmark', saveBookmark);
 
   const token = localStorage.getItem('accessToken');
   if (token) {

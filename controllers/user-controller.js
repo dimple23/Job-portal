@@ -23,8 +23,16 @@ const handle = require('../utils/promise-handler');
 // set up secret for JWT (json web token)...typically you'd hide this in a .env
 const secret = process.env.SECRET;
 
-// create function to register/create a new user
-// used when the POST route '/api/user/register' is hit
+
+
+
+/*****************************************************************************************
+ * Function: register
+ * This function is triggerend when new user tries to register him/herself to the app
+ * It stores user info to the DB
+ * It is used when the POST route '/api/user/register' is hit
+ *****************************************************************************************/
+
 const register = (req, res) => {
 
   console.log("Inside POST '/api/user/register' -> register");
@@ -53,15 +61,24 @@ const register = (req, res) => {
     else {
       res.status(200).json({
         success: true,
-        message: "Welcome to JDA Job Portal!"
+        message: "Welcome to INSPIRE !!"
       });
     }
   });
 
-}
+} //End of register()
 
-// function for logging in a user
-// this will run when user POSTs to '/api/user/login'
+
+
+
+
+/*****************************************************************************************
+ * Function: login
+ * This function is triggerend when already registered user tries to login to the app
+ * It verifies user info from the DB and fetches user data
+ * It will run when user POSTs to '/api/user/login'
+ *****************************************************************************************/
+
 const login = async (req, res) => {
 
   console.log("Inside POST '/api/user/login' -> login");
@@ -78,9 +95,9 @@ const login = async (req, res) => {
       error: "Internal error, try again"
     });
   }
-  else if (!userInfo) {
+  else if (userInfo === null) {
     res.status(401).json({
-      error: "Incorrect email"
+      error: "Incorrect email!"
     })
   }
   else {
@@ -88,12 +105,13 @@ const login = async (req, res) => {
     // check to see if password matches user's password
     const [pwErr, same] = await handle(userInfo.isCorrectPassword(password));
 
+
     if (pwErr) {
       res.status(500).json({
         error: "Internal error please try again!"
       });
     }
-    else if (!same) {
+    else if (same === false) {
       res.status(401).json({
         error: "Incorrect password!"
       });
@@ -112,12 +130,13 @@ const login = async (req, res) => {
       // respond with web token to the front end
       res.status(200).json(token);
 
-      // if you want to use session cookies instead...
-      // res.cookie('token', token, {httpOnly: true})
     }
 
   }
-}
+
+} //End of login()
+
+
 
 // get user profile
 // GET '/api/user' (this will be run through auth middleware)
@@ -133,14 +152,10 @@ const getUserProfile = async (req,res) => {
   else {
     res.status(200).json(userProfile);
   }
-}
 
-/*
-function updateUserWithNewJob(){
+} //End of getUserProfile()
 
-  const [userErr, userProfile] = await handle(User.findById(req._id));
 
-}*/
 
 // export our methods
 module.exports = {

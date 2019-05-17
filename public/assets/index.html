@@ -8,46 +8,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <link rel="stylesheet" href="./css/style.css">
-  <title>Inspire</title>
+  <title>Inspire Jobs</title>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!-- App Logo -->
     <a class="navbar-brand" href="#">Inspire</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <!-- <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" href="#">Search Jobs </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Explore Companies </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul> -->
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Job Location" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Job Location*" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="inputLocationId" type="submit">Find Jobs</button>
       </form>
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Profile</button>
-      <label>User Name</label>
+
+      <!-- This is not working -->
+      <a href="user-profile.html" target="_blank" id="userProfileId">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">View Profile</button>
+      </a>
       
+
+      <div id="user-info" class="ml-3 p-2">
+        <label class="bg-light p-2" id="userName-labelId" for="userName-label">
+          <h5 id="full-name"></h5>
+        </label>
+
+        <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="logout" type="submit">Logout</button>
+      </div>
     </div>
-  </nav>
+
+  </header>
 
 
   <div class="container my-5">
     <div class="row">
+
+
       <!-- left column - POST INFO -->
       <div class="col-12 col-md-8">
-        
         <h3 id="content-title">Jobs Post</h3>
         <ul id="post-feed" class="list-group">
           <!-- posts go here -->
@@ -55,18 +60,24 @@
       </div>
       <!-- end left -->
 
-      <!-- right column - USER INFO -->
-      <div class="col-12 col-md-4">
-        <h3 id="right-column-title">Login/Sign Up</h3>
-        <!-- List group -->
-        <div class="list-group list-group-horizontal-md" id="user-tabs" role="tablist">
 
+
+
+      <!-- right column - USER INFO -->
+      <div class="col-12 col-md-4 loginRegisterFormClass">
+
+        <h3 id="right-column-title" class="text-center">Login/Register</h3>
+
+        <!-- List group tabs-->
+        <div class="list-group list-group-horizontal-md" id="user-tabs" role="tablist">
           <a class="list-group-item list-group-item-action active" data-toggle="list" href="#login" role="tab">Login</a>
           <a class="list-group-item list-group-item-action" data-toggle="list" href="#signup" role="tab">Sign Up</a>
         </div>
 
+
         <!-- Tab panes -->
         <div class="tab-content my-4" id="forms">
+
           <!-- login form -->
           <div class="tab-pane active" id="login" role="tabpanel">
             <form id="login-form">
@@ -81,6 +92,9 @@
               <button type="submit" class="btn btn-block btn-success">Login</button>
             </form>
           </div>
+          <!-- end of login form -->
+
+
 
           <!-- signup form -->
           <div class="tab-pane" id="signup" role="tabpanel">
@@ -105,24 +119,26 @@
             </form>
           </div>
           <!-- end signup form -->
+
+
         </div>
         <!-- end form tabs -->
-        <div id="user-info">
-          <h3 id="full-name"></h3>
-          <!-- <button id="get-bookmarks" class="btn btn-block btn-info">Get My Bookmarks</button> -->
-          <button id="logout" class="btn btn-block btn-dark">Logout</button>
-        </div>
+
       </div>
+      <!-- End of right column - USER INFO -->
+
     </div>
   </div>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <script src="/assets/js/app.js"></script>
+
 </body>
 
-</html> 
-
-
+</html>

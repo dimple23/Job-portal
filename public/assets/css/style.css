@@ -35,7 +35,7 @@ nav {
   z-index:0;
   position:relative;
   width: 100%;
-  height: 900px;
+  height: 815px;
   display: flex;
   flex-direction: column;
   min-height: 85vh;
@@ -44,22 +44,16 @@ nav {
   color: #fff;
   background-color: #fcb831;
 }
-
-
-/* .animated {
-  animation-duration: 2.5s;
-  animation-fill-mode: both;
-  animation-iteration-count: infinite;
+.bg-dark {
+  background-color: rgba(0, 211, 255, 0.61)!important;
+}
+.btn-outline-info {
+  color: black;
+  border-color: #17a2b8;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-30px);}
-  60% {transform: translateY(-15px);}
-} */
-
 .animated {
-  color: #fff;
+  color: rgba(39, 27, 94, 0.705);
   font-size: 56px;
   line-height: 53px;
   margin: 0;
@@ -120,4 +114,10 @@ span.animated:hover {
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
+}
+
+.display-1 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
 }

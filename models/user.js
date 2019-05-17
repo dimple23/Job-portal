@@ -41,14 +41,33 @@ const UserSchema = new Schema({
     required: 'Please enter your last name'
   },
 
-  fullName: {
-    type: String
-  },
+  fullName: String,
+
+  contact: String,
+  userLocation: String,
+  preferredLocation: String,
+  node: Boolean,
+  express: Boolean,
+  react: Boolean,
+  HTMLCSS: Boolean,
+  javascript: Boolean,
+  jQuery: Boolean,
+  AJAX: Boolean,
+  mySQL: Boolean,
+  sequelize: Boolean,
+  mongoDB: Boolean,
+  mongoose: Boolean,
+  java: Boolean,
+  OOPs: Boolean,
+  resumeLink: String,
+  coverLetterLink: String,
+
 
   savedJobsArray: [{
     ref: "job",
     type: mongoose.Schema.Types.ObjectId,
   }]
+
 
 });
 
@@ -113,5 +132,6 @@ UserSchema.methods.setFullName = function setFullName() {
   this.fullName = `${this.firstName} ${this.lastName}`;
   return this.fullName;
 }
+
 
 module.exports = mongoose.model('User', UserSchema);

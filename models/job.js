@@ -1,35 +1,61 @@
+/***************************************************************************************
+ * File name: job.js
+ * 
+ * This file creates Job schema 
+ ***************************************************************************************/
+
+//Import dependencies
 const mongoose = require('mongoose');
+const {
+ Schema
+} = mongoose;
 
-const { Schema } = mongoose;
 
+//Create fields for the 'JobPortalSchema' collection
 const JobPortalSchema = new Schema({
 
- title: {
+ jobTitle: {
    type: String,
    required: true
  },
-
  jobtype: {
    type: String,
-   required: true
+   default: 'Unavailable'
  },
  position: {
    type: String,
-   required: true
+   default: 'Unavailable'
+ },
+ salary: {
+   type: String,
+   default: 'Unavailable'
  },
  location: {
    type: String,
-   required: true
+   default: 'Unavailable'
  },
  company: {
    type: String,
-  // required :true
+   default: 'Unavailable'
  },
- Description: {
+ link: {
    type: String,
-   //required: true
+   default: 'Unavailable'
+ },
+ description: {
+   type: String,
+   default: 'Unavailable'
+ },
+ posted: {
+   type: String,
+   default: 'Unavailable'
+ },
+ dateAdded: {
+   type: Date,
+   default: Date.now
  }
 });
 
 
+//Export "jobs" table
 module.exports = mongoose.model("jobs", JobPortalSchema);

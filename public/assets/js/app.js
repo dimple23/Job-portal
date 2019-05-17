@@ -10,6 +10,8 @@ const $postFeed = $('#post-feed');
 
 function signUp(event) {
 
+  console.log("Inside signUp(event)");
+
   event.preventDefault();
 
   //Get user input in an object
@@ -52,12 +54,15 @@ function signUp(event) {
     .then(function () {
       // custom bootstrap method
       // $('#signup').tab('hide'); //It's giving error
-      // $('#login').tab('show');
-      $('.loginRegisterFormClass').hide();
+      $('#signup').hide();
+      $('#login').tab('show');
+      //$('.loginRegisterFormClass').hide();
 
       //Set user name field to the current user
-      $('#userName-labelId').text(`${userData.firstName} ${userData.lastName}`);
-      $("#userProfileId").show();
+      // $('#userName-labelId').text(`${userData.firstName} ${userData.lastName}`);
+      // $("#userProfileId").show();
+      // $('#user-info').show();
+      // $('#full-name').text(userData.fullName);
 
     })
     .catch(err => {
@@ -78,6 +83,8 @@ function signUp(event) {
  *****************************************************************************************/
 
 function login(event) {
+
+  console.log("Inside login(event)");
 
   event.preventDefault();
 
@@ -125,6 +132,8 @@ function login(event) {
 
 function logout() {
 
+  console.log("Inside logout()");
+
   localStorage.removeItem('accessToken');
 
   $('#email-input-login').text("");
@@ -132,6 +141,7 @@ function logout() {
 
   $('#user-info').hide();
   $("#userProfileId").hide();
+
   $('#user-tabs, #forms, #right-column-title').show();
   $('#login').tab('show');
 
@@ -144,6 +154,8 @@ function logout() {
  *****************************************************************************************/
 
 function getUserProfile() {
+
+  console.log("Inside getUserProfile()");
 
   const token = localStorage.getItem('accessToken');
 
@@ -188,6 +200,28 @@ function setPreferredLocation() {
 
 }
 
+
+/*****************************************************************************************
+ * Function: formUserProfileUpdated()
+ * This function will 
+ *****************************************************************************************/
+
+function formUserProfileUpdated() {
+
+  console.log("Inside formUserProfileUpdated()");
+
+  // event.preventDefault();
+
+  // const userData = {
+  //   email: $('#email-input-login')
+  //     .val()
+  //     .trim(),
+  //   password: $('#password-input-login')
+  //     .val()
+  //     .trim()
+  // };
+
+}
 
 /*
 // function to GET reddit posts from api
@@ -330,9 +364,11 @@ $(document).ready(function () {
 
   $('#logout').on('click',logout); //testing
 
-  // $('#userProfileId').on('click', viewUserProfilePage);
+  $('#userProfileId').on('click', viewUserProfilePage);
 
   $('#inputLocationId').on('submit', setPreferredLocation);
+
+  $('#form-user-profile').on('submit', formUserProfileUpdated); 
 
 
   // $('#get-bookmarks').on('click', getBookmarks);

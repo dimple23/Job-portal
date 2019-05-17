@@ -41,19 +41,43 @@ const UserSchema = new Schema({
     required: 'Please enter your last name'
   },
 
-  fullName: {
-    type: String
-  },
+  fullName: String,
+
+  contact: String,
+  userLocation: String,
+  preferredLocation: String,
+  node: Boolean,
+  express: Boolean,
+  react: Boolean,
+  HTMLCSS: Boolean,
+  javascript: Boolean,
+  jQuery: Boolean,
+  AJAX: Boolean,
+  mySQL: Boolean,
+  sequelize: Boolean,
+  mongoDB: Boolean,
+  mongoose: Boolean,
+  java: Boolean,
+  OOPs: Boolean,
+  resumeLink: String,
+  coverLetterLink: String,
+
 
   savedJobsArray: [{
     ref: "job",
     type: mongoose.Schema.Types.ObjectId,
   }]
 
+
 });
 
 
+
+
+// set up ability to create password (FOR CREATING A USER OR UPDATING A USER'S PASSWORD)
 UserSchema.pre('save', function createPassword(next) {
+
+  console.log("Inside UserSchema.pre()");
 
   if (this.isNew || this.isModified('password')) {
 
@@ -78,6 +102,9 @@ UserSchema.pre('save', function createPassword(next) {
 
 // for logging in, we need to compare the incoming password with the hashed password
 UserSchema.methods.isCorrectPassword = function isCorrectPassword(password) {
+
+  console.log("Inside UserSchema.methods.isCorrectPassword()");
+  
   // save reference to "this"
   const document = this;
   return new Promise((resolve, reject) => {
@@ -99,13 +126,12 @@ UserSchema.methods.isCorrectPassword = function isCorrectPassword(password) {
 
 // set fullname method
 UserSchema.methods.setFullName = function setFullName() {
+
+  console.log("Inside UserSchema.methods.setFullName()");
+
   this.fullName = `${this.firstName} ${this.lastName}`;
   return this.fullName;
 }
 
 
-
-
-
-
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

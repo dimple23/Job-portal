@@ -6,6 +6,7 @@
 
 
 const router = require('express').Router();
+
 const userRoutes = require('./user-routes');
 const jobsRoutes = require('./jobs-routes');
 const scrapeRoutes = require('./scrape-routes');

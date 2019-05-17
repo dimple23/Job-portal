@@ -9,7 +9,7 @@
 const router = require('express').Router();
 
 // Import methods we exported from user-controller
-const {register, login, getUserProfile } = require('../../controllers/user-controller');
+const {register, login, getUserProfile, updateUserProfile } = require('../../controllers/user-controller');
 
 //Import authentication method 
 const withAuth = require('../../middleware/authentication');
@@ -31,6 +31,12 @@ router
 router
   .route('/login')
   .post(login);
+
+  
+// PUT update user '/api/user/update'
+router
+  .route('/update')
+  .put(updateUserProfile);
 
 
 module.exports = router;

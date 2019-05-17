@@ -26,8 +26,6 @@ const withAuth = (req, res, next) => {
     req.cookies.token;
 
 
-  // Eg. req.headers.authorization => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Q5OTRiNjQwNTc3ZTRlN2Y4MzM3NzgiLCJlbWFpbCI6ImFsZXgucm9zZW5rcmFuekBnbWFpbC5jb20iLCJpYXQiOjE1NTc3NjMzMzEsImV4cCI6MTU1Nzc2NjkzMX0.mwk49_vIK38YKZ8mZsZOq9joF8ubtbUwRPUz8T0mRVA"
-
   // ["Bearer", "<tokenvalue>"]
   //Trip "Bearer " keyword from the response
   if (req.headers.authorization) {

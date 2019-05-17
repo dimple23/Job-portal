@@ -8,6 +8,8 @@
 
 /* eslint-disable no-underscore-dangle */
 
+//Import dependencies
+
 const User = require('../models').user;
 const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');

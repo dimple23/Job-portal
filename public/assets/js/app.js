@@ -1,12 +1,29 @@
+//show navbar by scrol up
+
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 100) {
+    if (!$('.navbar').hasClass('fixed')) {
+      $('.navbar').stop().addClass('fixed').css('top', '-50px').animate({
+        'top': '0px'
+      }, 500);
+    }
+  } else {
+    $('.navbar').removeClass('fixed');
+  }
+});
+
+
+
+
 // get ref to section on page
 const $postFeed = $('#post-feed');
 
 // function to GET reddit posts from api
 function getRedditPosts() {
   $.ajax({
-    url: '/api/scrape',
-    method: 'GET'
-  })
+      url: '/api/scrape',
+      method: 'GET'
+    })
     .then(printPosts)
     .catch(err => {
       console.log(err);
@@ -16,12 +33,18 @@ function getRedditPosts() {
 // function to print posts/bookmarks to page
 function printPosts(postData) {
   $postFeed.empty();
-  postData.forEach(({ title, link }) => {
+  postData.forEach(({
+    title,
+    link
+  }) => {
     if (link.startsWith('/r')) {
       link = `https://reddit.com${link}`;
     }
     $('<li>')
-      .data({ title, link })
+      .data({
+        title,
+        link
+      })
       .addClass('list-group-item row d-flex align-items-center')
       .append(`<div class='col-12 col-md-8'><a href=${link} target='_blank'>${title}</a></div>`)
       .append(
@@ -59,18 +82,18 @@ function signUp(event) {
   }
 
   $.ajax({
-    url: '/api/user/register',
-    method: 'POST',
-    data: userData
-  })
-    .then(function(userData) {
+      url: '/api/user/register',
+      method: 'POST',
+      data: userData
+    })
+    .then(function (userData) {
       console.log(userData);
       return swal({
         title: userData.message,
         icon: 'success'
       });
     })
-    .then(function() {
+    .then(function () {
       // custom bootstrap method
       $('#signup').tab('hide');
       $('#login').tab('show');
@@ -105,11 +128,11 @@ function login(event) {
   }
 
   $.ajax({
-    url: '/api/user/login',
-    method: 'POST',
-    data: userData
-  })
-    .then(function(accessToken) {
+      url: '/api/user/login',
+      method: 'POST',
+      data: userData
+    })
+    .then(function (accessToken) {
       console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       getUserProfile();
@@ -136,13 +159,13 @@ function getUserProfile() {
   const token = localStorage.getItem('accessToken');
 
   $.ajax({
-    url: '/api/user',
-    method: 'GET',
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  })
-    .then(function(userData) {
+      url: '/api/user',
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    .then(function (userData) {
       console.log(userData);
       $('#user-tabs, #forms, #right-column-title').hide();
       $('#user-info').show();
@@ -174,17 +197,17 @@ function saveBookmark() {
 
   // if there's token, make a Post request to create a new bookmark for the user
   $.ajax({
-    url: '/api/bookmarks',
-    method: 'post',
-    data: postData,
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  })
-    .then(function(response) {
+      url: '/api/bookmarks',
+      method: 'post',
+      data: postData,
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    .then(function (response) {
       console.log(response);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
       handleError(err.responseJSON);
     });
@@ -202,13 +225,13 @@ function getBookmarks() {
   }
 
   $.ajax({
-    url: '/api/bookmarks',
-    method: 'GET',
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  })
-    .then(function(bookmarkData) {
+      url: '/api/bookmarks',
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    .then(function (bookmarkData) {
       console.log(bookmarkData);
       printPosts(bookmarkData.bookmarks);
     })
@@ -230,11 +253,11 @@ function handleError(errorData) {
   });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('#user-info').hide();
   $('#signup-form').on('submit', signUp);
   $('#login-form').on('submit', login);
-  $('#logout').on('click',logout);
+  $('#logout').on('click', logout);
   $('#get-bookmarks').on('click', getBookmarks);
   $('#get-posts').on('click', getRedditPosts);
   $postFeed.on('click', '.save-bookmark', saveBookmark);

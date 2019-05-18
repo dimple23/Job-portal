@@ -76,6 +76,8 @@ function updateProfile(event) {
 
      $("#prefLocation-input").val(userData.prefLocation);
 
+     $("inlineCheckbox1").val(userData.inlineCheckbox1)
+
      $("#resume-input").val(userData.resume);
 
      $("#coverLetter-input").val(userData.coverLetter);
@@ -92,7 +94,7 @@ function updateProfile(event) {
 }
 $(document).ready(function () {
 
-  $('#form-user-profile').on('submit', updateProfile); 
+  $('#submit').on('click', updateProfile); 
 
 getUserProfile();
 updateProfile();

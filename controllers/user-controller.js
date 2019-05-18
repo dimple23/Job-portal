@@ -22,6 +22,7 @@ const handle = require('../utils/promise-handler');
 
 // set up secret for JWT (json web token)...typically you'd hide this in a .env
 const secret = process.env.SECRET;
+console.log("secret: " + secret);
 
 
 

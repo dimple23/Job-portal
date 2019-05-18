@@ -14,6 +14,10 @@ nav {
 
   >
 } */
+
+
+
+
 .navbar {
   width: 100%;
   
@@ -121,3 +125,5 @@ span.animated:hover {
   font-weight: 300;
   line-height: 1.2;
 }
+
+/*  */

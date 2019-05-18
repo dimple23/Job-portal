@@ -15,6 +15,8 @@ $(window).scroll(function () {
 
 
 
+
+
 // get ref to section on page
 const $postFeed = $('#post-feed');
 
@@ -379,9 +381,9 @@ $(document).ready(function () {
 
   $('#login-form').on('submit', login); 
 
-  $('#logout').on('click',logout); //testing
+  $('#logout').on('click',logout);
 
-  $('#userProfileId').on('click', viewUserProfilePage);
+ // $('#userProfileId').on('click', viewUserProfilePage);
 
   $('#inputLocationId').on('submit', setPreferredLocation);
 

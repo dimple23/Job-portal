@@ -14,6 +14,10 @@ nav {
 
   >
 } */
+
+
+
+
 .navbar {
   width: 100%;
   
@@ -121,6 +125,11 @@ span.animated:hover {
   font-weight: 300;
   line-height: 1.2;
 }
+<<<<<<< HEAD
 #logout{
   float:right;
 }
+=======
+
+/*  */
+>>>>>>> 9fcc4e19c49d92ec1a9678c318f80304a23c0659

@@ -43,10 +43,18 @@ const UserSchema = new Schema({
 
   fullName: String,
 
-  contact: String,
-  userLocation: String,
-  preferredLocation: String,
-
+  contact:  {
+    type: String,
+    default: ""
+  },
+  userLocation: {
+    type: String,
+    default: ""
+  },
+  preferredLocation: {
+    type: String,
+    default: ""
+  },
   node: {
     type: Boolean,
     default: false
@@ -144,26 +152,26 @@ UserSchema.pre('save', function createPassword(next) {
 // set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
 UserSchema.pre('update', function updatePassword(next) {
 
-  console.log("Inside UserSchema.pre() -> save -> updatePassword()");
+  // console.log("Inside UserSchema.pre() -> save -> updatePassword()");
 
-  // if (this.isNew || this.isModified('password')) {
+  // // if (this.isNew || this.isModified('password')) {
 
-    // save reference to what "this" means
-    const document = this;
+  //   // save reference to what "this" means
+  //   const document = this;
 
-    // run bcrypt's hash method the create password
-    bcrypt.hash(this.password, saltRounds, (err, hashedPassword) => {
+  //   // run bcrypt's hash method the create password
+  //   bcrypt.hash(this.password, saltRounds, (err, hashedPassword) => {
       
-      if (err) {
-        next(err);
-      }
-      else {
-        // save new password
-        document.password = hashedPassword;
-        next();
-      }
-    });
-
+  //     if (err) {
+  //       next(err);
+  //     }
+  //     else {
+  //       // save new password
+  //       document.password = hashedPassword;
+  //       next();
+  //     }
+  //   });
+  next()
 });
 
 

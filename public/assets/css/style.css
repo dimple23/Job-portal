@@ -121,3 +121,6 @@ span.animated:hover {
   font-weight: 300;
   line-height: 1.2;
 }
+#logout{
+  float:right;
+}

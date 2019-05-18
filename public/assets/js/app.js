@@ -63,10 +63,14 @@ function signUp(event) {
     })
     .then(function (userData) {
       console.log(userData);
+
+     
       return swal({
         title: userData.message,
         icon: 'success'
       });
+
+      console.log(userData);
     })
     .then(function () {
       // custom bootstrap method
@@ -189,6 +193,8 @@ function getUserProfile() {
       $('#user-info').show();
       $('#full-name').text(userData.fullName);
       $("#userProfileId").show();
+
+      
     })
     .catch(err => {
       console.log(err);
@@ -381,7 +387,7 @@ $(document).ready(function () {
 
   $('#inputLocationId').on('submit', setPreferredLocation);
 
-  $('#form-user-profile').on('submit', formUserProfileUpdated); 
+  $('/user-profile').on('submit', formUserProfileUpdated); 
 
 
   // $('#get-bookmarks').on('click', getBookmarks);

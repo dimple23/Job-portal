@@ -51,7 +51,7 @@ function updateProfile(event) {
   
   console.log("Inside updateProfile() -> user-profile.js");
 
-  //event.preventDefault();
+  event.preventDefault();
 
   const token = localStorage.getItem("accessToken");
 

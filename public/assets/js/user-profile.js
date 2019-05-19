@@ -42,8 +42,8 @@ function updateProfile(event) {
 
   //user input in an object
   const userData={
-    phoneNo:$("#phoneNo-input").val().trim(),
-    
+    contact:$("#phoneNo-input").val().trim(),
+
     userLocation: $("#location-input").val().trim(),
     preferredLocation: $("#prefLocation-input").val().trim(),
     resume: $("#resume-input").val().trim(),

@@ -12,14 +12,14 @@ const indeedJobsModule = require('./indeed-scrape');
 const diceJobsModule = require('./dice-scrape');
 
 
-
-
 const scrapedJobs = async (req, res) => {
 
     console.log("Inside scrapedJobs()");
 
-    //Later this location value will be taken as user input
-    let location = "New York, NY";
+    // console.log("req.params.location: " + req.params.location);
+
+    //Get location value from query parameters
+    let location = req.params.location; //"New York, NY" => default value
     location = location.replace(" ", "+");
     location = location.replace(",", "%2C");
 

@@ -1,13 +1,13 @@
 
 
 // function to GET all the scraped jobs
-function getJobs() {
+function getJobs(location) {
 
     console.log("Inside getJobs()");
 
     $.ajax({
-            url: '/api/scrape',
-            method: 'GET'
+            url: `/api/scrape/${location}`,
+            method: 'GET',
         })
         .then(printScrapedJobs)
         .catch(err => {
@@ -289,8 +289,8 @@ $(document).ready(function () {
     //Hide the tag which will hide the saved jobs tag
     hideSavedJobsTagAtLogin();
 
-    //The get all jobs is called by default
-    getJobs();
+    //Get all jobs function is called by default with defalt location of "New York, NY"
+    getJobs("New York, NY");
 
     $('#scrapedJobFeed').on('click', '#save-job', saveJobInDB);
 

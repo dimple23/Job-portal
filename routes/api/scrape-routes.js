@@ -10,16 +10,11 @@
 const router = require('express').Router();
 
 // Import methods we exported from scraping-controller
-//const { diceJobs, indeedJobs } = require("../../controllers/scraping-controller");
-// const { indeedJobs } = require("../../controllers/scraping-controller");
 const { scrapedJobs } = require("../../controllers/scraping-controller");
 
 // GET route to match '/api/scrape'
 router
-  .route('/')
+  .route('/:location')
   .get(scrapedJobs);
-  // .get(indeedJobs);
-  // .get(diceJobs);
-
 
 module.exports = router;

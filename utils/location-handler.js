@@ -1,9 +1,0 @@
-
-function setLocation(){
-
-}
-
-module.exports = {
-
-}
-

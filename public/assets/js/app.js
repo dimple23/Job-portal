@@ -133,7 +133,6 @@ function login(event) {
       getUserProfile();
 
       //Show the tag which will show the saved jobs tag
-      //savedJobsTag.showSavedJobsTagAtLogin();
       showSavedJobsTagAtLogin();
     })
     .catch(err => {
@@ -198,6 +197,7 @@ function getUserProfile() {
       $('#full-name').text(userData.fullName);
       $("#userProfileId").show();
 
+
       
     })
     .catch(err => {
@@ -214,7 +214,8 @@ function getUserProfile() {
 
 // function viewUserProfilePage() {
 
-//   window.location.href = "./user-profile.html";
+//   window.open("assets/html/user-profile.html", "_blank");
+//   // window.open("assets/html/user-profile.html", "_self");
 // }
 
 
@@ -240,29 +241,8 @@ function preferredLocation() {
   }
   console.log("preferredLocation = " + userData.preferredLocation);
 
-  return userData.preferredLocation;
-
-  //Set User preferred location in DB with this input value
-
-  // const token = localStorage.getItem('accessToken');
-
-  // $.ajax({
-  //   url: '/api/user/update',
-  //   method: 'PUT',
-  //   data: userData,
-  //   headers: {
-  //     authorization: `Bearer ${token}`
-  //   }
-  // })
-  // .then(function (userData) {
-  //   console.log(userData);
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  //   handleError(err.responseJSON);
-  // });
-
-
+  //Get all jobs based on this new location
+  getJobs(userData.preferredLocation);
 
 }
 
@@ -284,6 +264,7 @@ function formUserProfileUpdated() {
   };
 
 }
+
 
 function handleError(errorData) {
   swal({
@@ -319,7 +300,7 @@ $(document).ready(function () {
 
   $('#login-form').on('submit', login);
 
-  $('#logout').on('click', logout); //testing
+  $('#logout').on('click', logout);
 
   // $('#userProfileId').on('click', viewUserProfilePage);
 
@@ -331,4 +312,3 @@ $(document).ready(function () {
   localStorage.removeItem('accessToken');
 
 });
-

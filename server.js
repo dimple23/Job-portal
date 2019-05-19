@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
-//app.use(cookieParser());
+
 
 // set up database info (Database name: "jda-job-portal")
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/jda-job-portal';
@@ -26,8 +26,6 @@ mongoose.Promise = Promise;
 mongoose.connect(mongoUri, {
   useNewUrlParser: true
 });
-
-
 
 
 // set up routes

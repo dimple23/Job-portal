@@ -176,7 +176,7 @@ const getUserProfile = async (req, res) => {
  *****************************************************************************************/
 
 //Dimple's version
-
+/*
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
@@ -231,13 +231,15 @@ const updateUserProfile = async (req, res) => {
   //}
 
 } //End of updateUserProfile()
+*/
 
-/*
 //Ankita's version
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
 
+  console.log("-----req.body------");
+  console.log(req.body);
 
   const [userErr, userProfile] = await handle(User.findById(req._id));
 
@@ -257,13 +259,16 @@ const updateUserProfile = async (req, res) => {
           message: "Error updating new data."
         });
       } else {
+        console.log("User profile data successfully saved!");
+        console.log(userProfile);
+
         res.status(200).json(userProfile);
       }
     });
   }
 
 } //End of updateUserProfile()
-*/
+
 
 
 

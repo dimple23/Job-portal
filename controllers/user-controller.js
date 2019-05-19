@@ -13,7 +13,7 @@
 
 //Import dependencies
 const jwt = require('jsonwebtoken');
-// const mongojs = require('mongojs'); //Dimple
+const mongojs = require('mongojs'); //Dimple
 require('dotenv').config();
 
 const User = require('../models').user;
@@ -176,7 +176,7 @@ const getUserProfile = async (req, res) => {
  *****************************************************************************************/
 
 //Dimple's version
-/*
+
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
@@ -231,8 +231,8 @@ const updateUserProfile = async (req, res) => {
   //}
 
 } //End of updateUserProfile()
-*/
 
+/*
 //Ankita's version
 const updateUserProfile = async (req, res) => {
 
@@ -263,7 +263,7 @@ const updateUserProfile = async (req, res) => {
   }
 
 } //End of updateUserProfile()
-
+*/
 
 
 

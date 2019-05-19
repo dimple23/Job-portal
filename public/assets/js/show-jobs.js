@@ -64,7 +64,7 @@ function printScrapedJobs(jobData) {
             $("<button>")
                 .attr("type", "button")
                 .addClass("btn")
-                .html(`�`)
+                .html(`📌`)
                 .attr("data-toggle", "tooltip")
                 .attr("data-placement", "top")
                 .attr("title", "Save Job")

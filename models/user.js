@@ -150,10 +150,10 @@ UserSchema.pre('save', function createPassword(next) {
 
 //Dimple's version
 // set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
-/*
-UserSchema.pre('update', function updatePassword(next) {
 
-  // console.log("Inside UserSchema.pre() -> save -> updatePassword()");
+UserSchema.pre('update', function updateUserProfile(next) {
+
+  // console.log("Inside UserSchema.pre() -> save -> updateUserProfile()");
 
   // // if (this.isNew || this.isModified('password')) {
 
@@ -174,13 +174,13 @@ UserSchema.pre('update', function updatePassword(next) {
   //   });
   next()
 });
-*/
 
+/*
 //Ankita's version
 // set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
-UserSchema.pre('update', function updatePassword(next) {
+UserSchema.pre('update', function updateUserProfile(next) {
 
-  console.log("Inside UserSchema.pre() -> save -> updatePassword()");
+  console.log("Inside UserSchema.pre() -> save -> updateUserProfile()");
 
   // if (this.isNew || this.isModified('password')) {
 
@@ -201,7 +201,7 @@ UserSchema.pre('update', function updatePassword(next) {
     });
 
 });
-
+*/
 
 
 // for logging in, we need to compare the incoming password with the hashed password

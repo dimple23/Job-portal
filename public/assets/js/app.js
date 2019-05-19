@@ -133,7 +133,6 @@ function login(event) {
       getUserProfile();
 
       //Show the tag which will show the saved jobs tag
-      //savedJobsTag.showSavedJobsTagAtLogin();
       showSavedJobsTagAtLogin();
     })
     .catch(err => {
@@ -198,6 +197,7 @@ function getUserProfile() {
       $('#full-name').text(userData.fullName);
       $("#userProfileId").show();
 
+
       
     })
     .catch(err => {
@@ -214,7 +214,8 @@ function getUserProfile() {
 
 // function viewUserProfilePage() {
 
-//   window.location.href = "./user-profile.html";
+//   window.open("assets/html/user-profile.html", "_blank");
+//   // window.open("assets/html/user-profile.html", "_self");
 // }
 
 
@@ -299,7 +300,7 @@ $(document).ready(function () {
 
   $('#login-form').on('submit', login);
 
-  $('#logout').on('click', logout); //testing
+  $('#logout').on('click', logout);
 
   // $('#userProfileId').on('click', viewUserProfilePage);
 
@@ -311,5 +312,3 @@ $(document).ready(function () {
   localStorage.removeItem('accessToken');
 
 });
-
-

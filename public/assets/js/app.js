@@ -15,16 +15,6 @@ $(window).scroll(function () {
 
 
 
-<<<<<<< HEAD
-
-
-
-// get ref to section on page
-const $postFeed = $('#post-feed');
-
-
-=======
->>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 /*****************************************************************************************
  * Function: signUp(event)
  * This function is triggerend when new user tries to register him/herself to the app
@@ -295,112 +285,6 @@ function formUserProfileUpdated() {
 
 }
 
-<<<<<<< HEAD
-/*
-// function to GET reddit posts from api
-function getRedditPosts() {
-  $.ajax({
-    url: '/api/scrape',
-    method: 'GET'
-  })
-    .then(printPosts)
-    .catch(err => {
-      console.log(err);
-    });
-}
-*/
-/*
-// function to print posts/bookmarks to page
-function printPosts(postData) {
-  $postFeed.empty();
-  postData.forEach(({ title, link }) => {
-    if (link.startsWith('/r')) {
-      link = `https://reddit.com${link}`;
-    }
-    $('<li>')
-      .data({ title, link })
-      .addClass('list-group-item row d-flex align-items-center')
-      .append(`<div class='col-12 col-md-8'><a href=${link} target='_blank'>${title}</a></div>`)
-      .append(
-        `<div class='col text-right'><button class='btn btn-sm btn-outline-danger save-bookmark'>Bookmark this!</button></div>`
-      )
-      .appendTo($postFeed);
-  });
-}
-*/
-/*
-getRedditPosts();
-*/
-
-
-
-
-/*
-// function to save bookmarks
-function saveBookmark() {
-  // get information from <li> that this button lives in (the parent)
-  const postData = $(this)
-    .parent()
-    .parent()
-    .data();
-  // get access token from localStorage
-  const token = localStorage.getItem('accessToken');
-  if (!token) {
-    return swal({
-      title: 'You need to be logged in to do this!',
-      icon: 'error'
-    });
-  }
-  // if there's token, make a Post request to create a new bookmark for the user
-  $.ajax({
-      url: '/api/bookmarks',
-      method: 'post',
-      data: postData,
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (err) {
-      console.log(err);
-      handleError(err.responseJSON);
-    });
-}
-*/
-
-/*
-function getBookmarks() {
-  // retrieve token
-  const token = localStorage.getItem('accessToken');
-  if (!token) {
-    return swal({
-      title: 'You have to be logged in!',
-      icon: 'error'
-    });
-  }
-  $.ajax({
-      url: '/api/bookmarks',
-      method: 'GET',
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    })
-    .then(function (bookmarkData) {
-      console.log(bookmarkData);
-      printPosts(bookmarkData.bookmarks);
-    })
-    .catch(err => {
-      console.log(err);
-      handleError(err.responseJSON);
-    });
-}
-*/
-/*
-=======
-
->>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 function handleError(errorData) {
   swal({
     title: 'Please login',
@@ -435,34 +319,16 @@ $(document).ready(function () {
 
   $('#login-form').on('submit', login);
 
-<<<<<<< HEAD
-  $('#logout').on('click',logout);
-
- // $('#userProfileId').on('click', viewUserProfilePage);
-=======
   $('#logout').on('click', logout); //testing
 
   // $('#userProfileId').on('click', viewUserProfilePage);
->>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 
   $('#inputLocationId').on('click', preferredLocation);
 
-<<<<<<< HEAD
-  $('/user-profile').on('submit', formUserProfileUpdated); 
-=======
   $('#form-user-profile').on('submit', formUserProfileUpdated);
->>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 
 
   localStorage.removeItem('accessToken');
 
 });
 
-<<<<<<< HEAD
-  const token = localStorage.getItem('accessToken');
-  if (token) {
-    getUserProfile();
-  }
-});
-=======
->>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b

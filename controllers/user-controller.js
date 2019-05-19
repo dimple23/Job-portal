@@ -1,18 +1,5 @@
-/***************************************************************************************
- * File name: user-controller.js
- * 
- * This file imports jsonwebtoken for creating bearer token for authentication, 
- * import data from 'models' folder
- * import promise-handler from utils folder
- * and exposes 3 apis to getUserProfile, login and register the user into the app
- * Returns: all the data is returned in json format
- ***************************************************************************************/
-
-
-/* eslint-disable no-underscore-dangle */
-
-//Import dependencies
 const jwt = require('jsonwebtoken');
+const mongojs = require('mongojs')
 require('dotenv').config();
 
 const User = require('../models').user;
@@ -150,7 +137,6 @@ const login = async (req, res) => {
 
 /*****************************************************************************************
  * Function: getUserProfile()
-
  * It will run GET '/api/user' (this will be run through auth middleware)
  *****************************************************************************************/
 
@@ -179,30 +165,55 @@ const getUserProfile = async (req, res) => {
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
+  // console.log(req.body)
 
+  // const [userErr, userProfile] = await handle(User.findById(req._id));
+  // console.log(req._id);
+  // console.log(userProfile);
 
-  const [userErr, userProfile] = await handle(User.findById(req._id));
+  // if (userErr) {
+  //   res.status(500).json(userErr);
+  // } else {
 
-  if (userErr) {
-    res.status(500).json(userErr);
-  } else {
-
-    for (let key in req.body) {
-      userProfile[key] = req.body[key];
-    }
-
-    userProfile.save(err => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({
-          success: false,
-          message: "Error updating new data."
-        });
+  //   for (let key in req.body) {
+  //     userProfile[key] = req.body[key];
+  //   }
+  // Update the note that matches the object id
+  User.update({
+      _id: mongojs.ObjectId(req._id)
+    }, {
+      // Set the title, note and modified parameters
+      // sent in the req body.
+      $set: req.body
+    },
+    function (error, edited) {
+      // Log any errors from mongojs
+      if (error) {
+        console.log("error" + error);
+        res.send(error);
       } else {
-        res.status(200).json(userProfile);
+        // Otherwise, send the mongojs response to the browser
+        // This will fire off the success function of the ajax request
+        console.log(edited);
+        res.send(edited);
       }
-    });
-  }
+    }
+  );
+
+  // userProfile.save(err => {
+  //   console.log(userProfile)
+  //   if (err) {
+
+  //     console.log("Thos is Error" + err);
+  //     res.status(500).json({
+  //       success: false,
+  //       message: "Error updating new data."
+  //     });
+  //   } else {
+  //     res.status(200).json(userProfile);
+  //   }
+  // });
+  //}
 
 } //End of updateUserProfile()
 

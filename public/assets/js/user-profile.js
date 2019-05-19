@@ -23,6 +23,17 @@ function getUserProfile() {
     $('#emailId-input').val(userData.email);
 
     $('#password-input').val(userData.password);
+
+    $('#location-input').val(userData.userLocation);
+
+    $('#prefLocation-input').val(userData.preferredLocation);
+
+    $('#phoneNo-input').val(userData.contact);
+
+    $('#resume-input').val(userData.resume);
+    $('#coverLetter-input').val(userData.coverLetter);
+
+
    
    
   })
@@ -33,7 +44,7 @@ function getUserProfile() {
 }
 
 function updateProfile(event) {
-
+  const token = localStorage.getItem("accessToken");
   console.log("Inside user profile (event)");
 
   event.preventDefault();
@@ -42,24 +53,25 @@ function updateProfile(event) {
 
   //user input in an object
   const userData={
-    phoneNo:$("#phoneNo-input").val().trim(),
-    location: $("#location-input").val().trim(),
-    prefLocation: $("#prefLocation-input").val().trim(),
+    contact:$("#phoneNo-input").val().trim(),
+    
+    userLocation: $("#location-input").val().trim(),
+    preferredLocation: $("#prefLocation-input").val().trim(),
     resume: $("#resume-input").val().trim(),
     coverLetter: $("#coverLetter-input").val().trim()
   };
 
-
+  console.log(userData)
   $.ajax({
-    url: "/api/user",
+    url: "/api/user/update",
     method: "PUT",
-    data: userData
-    // headers: {
-    //   authorization: `Bearer ${token}`
-    // }
+    data: userData,
+    headers: {
+    authorization: `Bearer ${token}`
+    }
     
   }).then(function(userData) {
-    console.log(userData);
+    // console.log(userData);
 
     // use data in userData to write into form input fields
     // ie $("name-input").val(userData.name);
@@ -75,8 +87,6 @@ function updateProfile(event) {
      $("#location-input").val(userData.location);
 
      $("#prefLocation-input").val(userData.prefLocation);
-
-     $("inlineCheckbox1").val(userData.inlineCheckbox1)
 
      $("#resume-input").val(userData.resume);
 
@@ -94,7 +104,7 @@ function updateProfile(event) {
 }
 $(document).ready(function () {
 
-  $('#submit').on('click', updateProfile); 
+  $('#form-user-profile').on('submit', updateProfile); 
 
 getUserProfile();
 updateProfile();

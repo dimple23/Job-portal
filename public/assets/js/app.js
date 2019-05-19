@@ -291,17 +291,14 @@ function saveBookmark() {
     .parent()
     .parent()
     .data();
-
   // get access token from localStorage
   const token = localStorage.getItem('accessToken');
-
   if (!token) {
     return swal({
       title: 'You need to be logged in to do this!',
       icon: 'error'
     });
   }
-
   // if there's token, make a Post request to create a new bookmark for the user
   $.ajax({
       url: '/api/bookmarks',
@@ -319,21 +316,18 @@ function saveBookmark() {
       handleError(err.responseJSON);
     });
 }
-
 */
 
 /*
 function getBookmarks() {
   // retrieve token
   const token = localStorage.getItem('accessToken');
-
   if (!token) {
     return swal({
       title: 'You have to be logged in!',
       icon: 'error'
     });
   }
-
   $.ajax({
       url: '/api/bookmarks',
       method: 'GET',

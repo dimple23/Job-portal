@@ -8,9 +8,7 @@ Main goals of the project:
 
 ## Directory structure
 
-
-(/Users/dimplechavda/Desktop/Project/project-2/Job-portal/screen shot/Screen Shot 2019-05-19 at 3.35.55 PM.png)
-
+/Users/dimplechavda/Desktop/Project/project-2/Job-portal/screen shot/Screen Shot 2019-05-19 at 3.35.55 PM.png
 
 
 

@@ -240,29 +240,8 @@ function preferredLocation() {
   }
   console.log("preferredLocation = " + userData.preferredLocation);
 
-  return userData.preferredLocation;
-
-  //Set User preferred location in DB with this input value
-
-  // const token = localStorage.getItem('accessToken');
-
-  // $.ajax({
-  //   url: '/api/user/update',
-  //   method: 'PUT',
-  //   data: userData,
-  //   headers: {
-  //     authorization: `Bearer ${token}`
-  //   }
-  // })
-  // .then(function (userData) {
-  //   console.log(userData);
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  //   handleError(err.responseJSON);
-  // });
-
-
+  //Get all jobs based on this new location
+  getJobs(userData.preferredLocation);
 
 }
 
@@ -284,6 +263,7 @@ function formUserProfileUpdated() {
   };
 
 }
+
 
 function handleError(errorData) {
   swal({
@@ -331,4 +311,5 @@ $(document).ready(function () {
   localStorage.removeItem('accessToken');
 
 });
+
 

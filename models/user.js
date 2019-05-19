@@ -148,8 +148,9 @@ UserSchema.pre('save', function createPassword(next) {
   }
 });
 
-
+//Dimple's version
 // set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
+/*
 UserSchema.pre('update', function updatePassword(next) {
 
   // console.log("Inside UserSchema.pre() -> save -> updatePassword()");
@@ -172,6 +173,33 @@ UserSchema.pre('update', function updatePassword(next) {
   //     }
   //   });
   next()
+});
+*/
+
+//Ankita's version
+// set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
+UserSchema.pre('update', function updatePassword(next) {
+
+  console.log("Inside UserSchema.pre() -> save -> updatePassword()");
+
+  // if (this.isNew || this.isModified('password')) {
+
+    // save reference to what "this" means
+    const document = this;
+
+    // run bcrypt's hash method the create password
+    bcrypt.hash(this.password, saltRounds, (err, hashedPassword) => {
+      
+      if (err) {
+        next(err);
+      }
+      else {
+        // save new password
+        document.password = hashedPassword;
+        next();
+      }
+    });
+
 });
 
 

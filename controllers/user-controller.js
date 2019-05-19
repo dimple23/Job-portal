@@ -1,9 +1,22 @@
+/***************************************************************************************
+ * File name: user-controller.js
+ * 
+ * This file imports jsonwebtoken for creating bearer token for authentication, 
+ * import data from 'models' folder
+ * import promise-handler from utils folder
+ * and exposes 3 apis to getUserProfile, login and register the user into the app
+ * Returns: all the data is returned in json format
+ ***************************************************************************************/
+
+
+/* eslint-disable no-underscore-dangle */
+
+//Import dependencies
 const jwt = require('jsonwebtoken');
-const mongojs = require('mongojs')
+// const mongojs = require('mongojs'); //Dimple
 require('dotenv').config();
 
 const User = require('../models').user;
-// const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
 
 
@@ -162,6 +175,8 @@ const getUserProfile = async (req, res) => {
  * It will run PUT update user '/api/user/update'
  *****************************************************************************************/
 
+//Dimple's version
+/*
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
@@ -214,6 +229,38 @@ const updateUserProfile = async (req, res) => {
   //   }
   // });
   //}
+
+} //End of updateUserProfile()
+*/
+
+//Ankita's version
+const updateUserProfile = async (req, res) => {
+
+  console.log("Inside PUT '/api/user/update' -> updateUserProfile");
+
+
+  const [userErr, userProfile] = await handle(User.findById(req._id));
+
+  if (userErr) {
+    res.status(500).json(userErr);
+  } else {
+
+    for (let key in req.body) {
+      userProfile[key] = req.body[key];
+    }
+
+    userProfile.save(err => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({
+          success: false,
+          message: "Error updating new data."
+        });
+      } else {
+        res.status(200).json(userProfile);
+      }
+    });
+  }
 
 } //End of updateUserProfile()
 

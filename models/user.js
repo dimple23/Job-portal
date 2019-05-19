@@ -209,5 +209,13 @@ UserSchema.methods.setFullName = function setFullName() {
   return this.fullName;
 }
 
+UserSchema.methods.checkBox = function checkBox() {
+
+  // user equal to the boolean "true"
+  this.HTMLCSS = true;
+
+  // Return the new boolean value
+  return this.HTMLCSS;
+};
 
 module.exports = mongoose.model('User', UserSchema);

@@ -8,8 +8,7 @@ Main goals of the project:
 
 ## Directory structure
 
-/Users/dimplechavda/Desktop/Project/project-2/Job-portal/screen shot/Screen Shot 2019-05-19 at 3.35.55 PM.png
-
+https://github.com/dimple23/Job-portal/blob/master/screen%20shot/Screen%20Shot%202019-05-19%20at%203.35.55%20PM.png
 
 
 

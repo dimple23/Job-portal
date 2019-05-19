@@ -1,3 +1,4 @@
+
 //show navbar by scrol up
 
 $(window).scroll(function () {
@@ -14,6 +15,7 @@ $(window).scroll(function () {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -21,6 +23,8 @@ $(window).scroll(function () {
 const $postFeed = $('#post-feed');
 
 
+=======
+>>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 /*****************************************************************************************
  * Function: signUp(event)
  * This function is triggerend when new user tries to register him/herself to the app
@@ -133,9 +137,14 @@ function login(event) {
       data: userData
     })
     .then(function (accessToken) {
-      console.log(accessToken);
+      // console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
+
       getUserProfile();
+
+      //Show the tag which will show the saved jobs tag
+      //savedJobsTag.showSavedJobsTagAtLogin();
+      showSavedJobsTagAtLogin();
     })
     .catch(err => {
       console.log(err);
@@ -168,6 +177,9 @@ function logout() {
   $('#user-tabs, #forms, #right-column-title').show();
   $('#login').tab('show');
 
+  //Hide the tag which will hide the saved jobs tag
+  // savedJobsTag.hideSavedJobsTagAtLogin();
+  hideSavedJobsTagAtLogin();
 
 }
 
@@ -217,11 +229,50 @@ function getUserProfile() {
 
 
 /*****************************************************************************************
- * Function: setPreferredLocation()
+ * Function: preferredLocation()
  * This function will store the user's preferred job location in the database
  *****************************************************************************************/
 
-function setPreferredLocation() {
+function preferredLocation() {
+
+  console.log("Inside preferredLocation()");
+
+  event.preventDefault();
+
+  const userData = {
+    preferredLocation: $("#inputLocationVal")
+      .val()
+      .trim()
+  };
+
+  if(!userData.preferredLocation) {
+    return;
+  }
+  console.log("preferredLocation = " + userData.preferredLocation);
+
+  return userData.preferredLocation;
+
+  //Set User preferred location in DB with this input value
+
+  // const token = localStorage.getItem('accessToken');
+
+  // $.ajax({
+  //   url: '/api/user/update',
+  //   method: 'PUT',
+  //   data: userData,
+  //   headers: {
+  //     authorization: `Bearer ${token}`
+  //   }
+  // })
+  // .then(function (userData) {
+  //   console.log(userData);
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   handleError(err.responseJSON);
+  // });
+
+
 
 }
 
@@ -244,6 +295,7 @@ function formUserProfileUpdated() {
 
 }
 
+<<<<<<< HEAD
 /*
 // function to GET reddit posts from api
 function getRedditPosts() {
@@ -346,6 +398,9 @@ function getBookmarks() {
 }
 */
 /*
+=======
+
+>>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 function handleError(errorData) {
   swal({
     title: 'Please login',
@@ -358,8 +413,6 @@ function handleError(errorData) {
     $('#login').tab('show');
   });
 }
-*/
-
 
 
 
@@ -367,31 +420,49 @@ function handleError(errorData) {
 
 $(document).ready(function () {
 
+  console.log("Inside document.ready of app.js");
+
+  //Load joblisting page
+  $("#jobfeedId").load("assets/html/job-listing.html");
+
   //Hide logout button before login/register
-  $('#user-info').hide(); 
+  $('#user-info').hide();
 
   //Hide link to user profile
   $("#userProfileId").hide();
 
   $('#signup-form').on('submit', signUp);
 
-  $('#login-form').on('submit', login); 
+  $('#login-form').on('submit', login);
 
+<<<<<<< HEAD
   $('#logout').on('click',logout);
 
  // $('#userProfileId').on('click', viewUserProfilePage);
+=======
+  $('#logout').on('click', logout); //testing
 
-  $('#inputLocationId').on('submit', setPreferredLocation);
+  // $('#userProfileId').on('click', viewUserProfilePage);
+>>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 
+  $('#inputLocationId').on('click', preferredLocation);
+
+<<<<<<< HEAD
   $('/user-profile').on('submit', formUserProfileUpdated); 
+=======
+  $('#form-user-profile').on('submit', formUserProfileUpdated);
+>>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b
 
 
-  // $('#get-bookmarks').on('click', getBookmarks);
-  // $('#get-posts').on('click', getRedditPosts);
-  // $postFeed.on('click', '.save-bookmark', saveBookmark);
+  localStorage.removeItem('accessToken');
 
+});
+
+<<<<<<< HEAD
   const token = localStorage.getItem('accessToken');
   if (token) {
     getUserProfile();
   }
 });
+=======
+>>>>>>> 4eead59d5b5497bc4ec31f3a6f0555215258b37b

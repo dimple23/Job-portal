@@ -46,6 +46,8 @@ const register = (req, res) => {
 
   // run setFullName()
   user.setFullName();
+  user.checkBox();
+
 
   // create/save new user (this will trigger the password creation method we set up in the User model)
   user.save(err => {

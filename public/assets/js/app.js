@@ -71,8 +71,8 @@ function signUp(event) {
     .then(function () {
       // custom bootstrap method
       // $('#signup').tab('hide'); //It's giving error
-      $('#signup').hide();
       $('#login').tab('show');
+      $('#signup').hide();
       //$('.loginRegisterFormClass').hide();
 
       //Set user name field to the current user

@@ -17,65 +17,57 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="row">
-    <div class="collapse navbar-collapse" id="navbarColor01">
+      <div class="collapse navbar-collapse" id="navbarColor01">
 
-      <form class="form-inline ">
-        <input class="form-control mr-sm-2" type="search" placeholder="Job Location*" aria-label="Search" value="New York, NY">
-        <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="inputLocationId" type="submit">Find Jobs</button>
-      </form>
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" id="inputLocationVal" type="search" placeholder="Job Location*" aria-label="Search"
+            value="New York, NY">
+          <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="inputLocationId" type="submit">Find Jobs</button>
+        </form>
 
 
-      <button class="btn btn-outline-info my-2 ml-sm-0" type="submit"><a href="assets/html/user-profile.html" target="_blank">View Profile</a></button>
+        <button class="btn btn-outline-info my-2 ml-sm-0" type="submit"><a href="assets/html/user-profile.html"
+            target="_blank">View Profile</a></button>
 
-       <div id="user-info" class="ml-3 p-2">
-        <label class="bg-light p-2" id="userName-labelId" for="userName-label">
-          <h5 id="full-name"></h5>
-        </label>
-        <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="logout" type="submit">Logout</button>
+        <div id="user-info" class="ml-3 p-2">
+          <label class="bg-light p-2" id="userName-labelId" for="userName-label">
+            <h5 id="full-name"></h5>
+          </label>
+          <button class="btn btn-outline-info my-2 my-sm-0 p-2" id="logout" type="submit">Logout</button>
+        </div>
       </div>
-    </div>
 
       <h1 class="sticky-top text-center display-1 ml-auto">
-          <span class="animated">🅸</span>
-          <span class="animated">🅽</span>
-          <span class="animated">🆂</span>
-          <span class="animated">🅿</span>
-          <span class="animated">🅸</span>
-          <span class="animated">🆁 </span>
-          <span class="animated">🅴</span>
-    
-        </h1>
+        <span class="animated">🅸</span>
+        <span class="animated">🅽</span>
+        <span class="animated">🆂</span>
+        <span class="animated">🅿</span>
+        <span class="animated">🅸</span>
+        <span class="animated">🆁 </span>
+        <span class="animated">🅴</span>
+
+      </h1>
 
     </div>
-  </div>
+    </div>
   </nav>
 
   <div class="jobbg">
-    
+
   </div>
 
   <div class="container my-5">
 
     <div class="row">
+
       <!-- left column - POST INFO -->
-      <div class="col-12 col-md-8">
-
-        <h3 id="content-title">Jobs Post</h3>
-        <ul id="post-feed" class="list-group">
-          <li>
-            <button class="saveJob"><span>Save 📌
-
-                <i class="fa fa-thumb-tack" aria-hidden="false">
-
-                </i></span></button></li>
-          <!-- posts go here -->
-        </ul>
-      </div>
+      <div class="col-12 col-md-8" id="jobfeedId"></div>
       <!-- end left -->
 
       <!-- right column - USER INFO -->
       <div class="col-12 col-md-4">
         <h3 id="right-column-title">Login/Sign Up</h3>
+
         <!-- List group -->
         <div class="list-group list-group-horizontal-md" id="user-tabs" role="tablist">
 
@@ -123,13 +115,18 @@
             </form>
           </div>
           <!-- end signup form -->
+
         </div>
         <!-- end form tabs -->
+
+
         <div id="user-info">
           <h3 id="full-name"></h3>
           <!-- <button id="get-bookmarks" class="btn btn-block btn-info">Get My Bookmarks</button> -->
           <!--<button id="logout" class="btn btn-block btn-dark">Logout</button>-->
         </div>
+
+
       </div>
     </div>
   </div>
@@ -139,7 +136,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+  <!-- Import javascripts  -->
   <script src="assets/js/app.js"></script>
+
+
 </body>
 
 </html>

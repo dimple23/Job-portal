@@ -14,7 +14,7 @@ const {
 //Create fields for the 'JobPortalSchema' collection
 const JobPortalSchema = new Schema({
 
- jobTitle: {
+ jobTitle: { //indeed dice
    type: String,
    required: true
  },
@@ -26,15 +26,15 @@ const JobPortalSchema = new Schema({
    type: String,
    default: 'Unavailable'
  },
- salary: {
+ salary: { //indeed
    type: String,
    default: 'Unavailable'
  },
- location: {
+ location: { //indeed dice
    type: String,
    default: 'Unavailable'
  },
- company: {
+ company: { //indeed dice
    type: String,
    default: 'Unavailable'
  },
@@ -42,11 +42,11 @@ const JobPortalSchema = new Schema({
    type: String,
    default: 'Unavailable'
  },
- description: {
+ description: { //indeed dice
    type: String,
    default: 'Unavailable'
  },
- posted: {
+ posted: { //dice
    type: String,
    default: 'Unavailable'
  },

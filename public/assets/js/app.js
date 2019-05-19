@@ -1,3 +1,4 @@
+
 //show navbar by scrol up
 
 $(window).scroll(function () {
@@ -12,11 +13,6 @@ $(window).scroll(function () {
   }
 });
 
-
-
-
-// get ref to section on page
-const $postFeed = $('#post-feed');
 
 
 /*****************************************************************************************
@@ -127,9 +123,14 @@ function login(event) {
       data: userData
     })
     .then(function (accessToken) {
-      console.log(accessToken);
+      // console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
+
       getUserProfile();
+
+      //Show the tag which will show the saved jobs tag
+      //savedJobsTag.showSavedJobsTagAtLogin();
+      showSavedJobsTagAtLogin();
     })
     .catch(err => {
       console.log(err);
@@ -162,6 +163,9 @@ function logout() {
   $('#user-tabs, #forms, #right-column-title').show();
   $('#login').tab('show');
 
+  //Hide the tag which will hide the saved jobs tag
+  // savedJobsTag.hideSavedJobsTagAtLogin();
+  hideSavedJobsTagAtLogin();
 
 }
 
@@ -209,11 +213,50 @@ function getUserProfile() {
 
 
 /*****************************************************************************************
- * Function: setPreferredLocation()
+ * Function: preferredLocation()
  * This function will store the user's preferred job location in the database
  *****************************************************************************************/
 
-function setPreferredLocation() {
+function preferredLocation() {
+
+  console.log("Inside preferredLocation()");
+
+  event.preventDefault();
+
+  const userData = {
+    preferredLocation: $("#inputLocationVal")
+      .val()
+      .trim()
+  };
+
+  if(!userData.preferredLocation) {
+    return;
+  }
+  console.log("preferredLocation = " + userData.preferredLocation);
+
+  return userData.preferredLocation;
+
+  //Set User preferred location in DB with this input value
+
+  // const token = localStorage.getItem('accessToken');
+
+  // $.ajax({
+  //   url: '/api/user/update',
+  //   method: 'PUT',
+  //   data: userData,
+  //   headers: {
+  //     authorization: `Bearer ${token}`
+  //   }
+  // })
+  // .then(function (userData) {
+  //   console.log(userData);
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   handleError(err.responseJSON);
+  // });
+
+
 
 }
 
@@ -236,114 +279,7 @@ function formUserProfileUpdated() {
 
 }
 
-/*
-// function to GET reddit posts from api
-function getRedditPosts() {
-  $.ajax({
-    url: '/api/scrape',
-    method: 'GET'
-  })
-    .then(printPosts)
-    .catch(err => {
-      console.log(err);
-    });
-}
-*/
-/*
-// function to print posts/bookmarks to page
-function printPosts(postData) {
-  $postFeed.empty();
-  postData.forEach(({ title, link }) => {
-    if (link.startsWith('/r')) {
-      link = `https://reddit.com${link}`;
-    }
-    $('<li>')
-      .data({ title, link })
-      .addClass('list-group-item row d-flex align-items-center')
-      .append(`<div class='col-12 col-md-8'><a href=${link} target='_blank'>${title}</a></div>`)
-      .append(
-        `<div class='col text-right'><button class='btn btn-sm btn-outline-danger save-bookmark'>Bookmark this!</button></div>`
-      )
-      .appendTo($postFeed);
-  });
-}
-*/
-/*
-getRedditPosts();
-*/
 
-
-
-
-/*
-// function to save bookmarks
-function saveBookmark() {
-  // get information from <li> that this button lives in (the parent)
-  const postData = $(this)
-    .parent()
-    .parent()
-    .data();
-
-  // get access token from localStorage
-  const token = localStorage.getItem('accessToken');
-
-  if (!token) {
-    return swal({
-      title: 'You need to be logged in to do this!',
-      icon: 'error'
-    });
-  }
-
-  // if there's token, make a Post request to create a new bookmark for the user
-  $.ajax({
-      url: '/api/bookmarks',
-      method: 'post',
-      data: postData,
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (err) {
-      console.log(err);
-      handleError(err.responseJSON);
-    });
-}
-
-*/
-
-/*
-function getBookmarks() {
-  // retrieve token
-  const token = localStorage.getItem('accessToken');
-
-  if (!token) {
-    return swal({
-      title: 'You have to be logged in!',
-      icon: 'error'
-    });
-  }
-
-  $.ajax({
-      url: '/api/bookmarks',
-      method: 'GET',
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    })
-    .then(function (bookmarkData) {
-      console.log(bookmarkData);
-      printPosts(bookmarkData.bookmarks);
-    })
-    .catch(err => {
-      console.log(err);
-      handleError(err.responseJSON);
-    });
-}
-*/
-/*
 function handleError(errorData) {
   swal({
     title: 'Please login',
@@ -356,8 +292,6 @@ function handleError(errorData) {
     $('#login').tab('show');
   });
 }
-*/
-
 
 
 
@@ -365,31 +299,31 @@ function handleError(errorData) {
 
 $(document).ready(function () {
 
+  console.log("Inside document.ready of app.js");
+
+  //Load joblisting page
+  $("#jobfeedId").load("assets/html/job-listing.html");
+
   //Hide logout button before login/register
-  $('#user-info').hide(); 
+  $('#user-info').hide();
 
   //Hide link to user profile
   $("#userProfileId").hide();
 
   $('#signup-form').on('submit', signUp);
 
-  $('#login-form').on('submit', login); 
+  $('#login-form').on('submit', login);
 
-  $('#logout').on('click',logout); //testing
+  $('#logout').on('click', logout); //testing
 
-  $('#userProfileId').on('click', viewUserProfilePage);
+  // $('#userProfileId').on('click', viewUserProfilePage);
 
-  $('#inputLocationId').on('submit', setPreferredLocation);
+  $('#inputLocationId').on('click', preferredLocation);
 
-  $('#form-user-profile').on('submit', formUserProfileUpdated); 
+  $('#form-user-profile').on('submit', formUserProfileUpdated);
 
 
-  // $('#get-bookmarks').on('click', getBookmarks);
-  // $('#get-posts').on('click', getRedditPosts);
-  // $postFeed.on('click', '.save-bookmark', saveBookmark);
+  localStorage.removeItem('accessToken');
 
-  const token = localStorage.getItem('accessToken');
-  if (token) {
-    getUserProfile();
-  }
 });
+

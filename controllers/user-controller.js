@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const User = require('../models').user;
-const Jobs = require('../models').job;
+// const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
 
 

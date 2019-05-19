@@ -1,3 +1,4 @@
+
 // function to savejobs
 function savejobs() {
   // get information from <li> that this button lives in (the parent)
@@ -75,3 +76,9 @@ function handleError(errorData) {
 }
 
 $postFeed.on('click', '#saveJob', savejobs);
+
+
+
+$(document).ready(function () {
+
+});

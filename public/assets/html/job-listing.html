@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Inspire - Jobs</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <ul class="nav nav-tabs">
+      <li>
+        <a data-toggle="tab" href="#newjoblistDivId">Current Job Listings</a>
+      </li>
+      <li class="ml-5" id="mySavedJobsTabId">
+        <a data-toggle="tab" href="#savedjoblistDivId">My Saved Jobs</a>
+      </li>
+    </ul>
+
+
+    <div class="tab-content">
+
+      <!-- Populate new New Joblist -->
+      <div id="newjoblistDivId" class="tab-pane fade active">
+        <div class="list-group list-group-horizontal-md" id="newjoblist" role="tablist">
+
+          <ul id="scrapedJobFeed" class="list-group list-group-flush text-dark"
+            style="height:420px; overflow-y: scroll;">
+            <!-- job posts go here -->
+          </ul>
+
+        </div>
+      </div>
+      <!-- End Populate new New Joblist -->
+
+
+      <!-- Show saved jobs -->
+      <div id="savedjoblistDivId" class="tab-pane fade">
+        <div class="list-group list-group-horizontal-md" id="savedjoblist" role="tablist">
+
+          <ul id="mySavedJobFeed" class="list-group list-group-flush text-dark"
+          style="height:420px; overflow-y: scroll;">
+            <!-- saved jobs appear here -->
+          </ul>
+
+        </div>
+
+      </div>
+      <!-- Show saved jobs -->
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="assets/js/show-jobs.js"></script>
+</body>
+
+</html>

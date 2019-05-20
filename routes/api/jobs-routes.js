@@ -9,7 +9,7 @@
 const router = require('express').Router();
 
 // Import methods we exported from jobs-controller
-const { createNewJob, getSavedJobs } = require('../../controllers/jobs-controller');
+const { createNewJob, getSavedJobs, deleteSavedJob } = require('../../controllers/jobs-controller');
 
 //Import authentication method 
 const withAuth = require('../../middleware/authentication');
@@ -23,7 +23,8 @@ router.use(withAuth);
 router
   .route('/')
   .get(getSavedJobs)
-  .post(createNewJob);
+  .post(createNewJob)
+  .delete(deleteSavedJob);
 
 
 //Export router

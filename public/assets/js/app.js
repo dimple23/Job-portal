@@ -308,6 +308,7 @@ $(document).ready(function () {
 
   $('#form-user-profile').on('submit', formUserProfileUpdated);
 
+  
 
   localStorage.removeItem('accessToken');
 

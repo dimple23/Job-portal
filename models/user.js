@@ -128,7 +128,7 @@ UserSchema.pre('save', function createPassword(next) {
 
   console.log("Inside UserSchema.pre() -> save -> createPassword()");
 
-  if (this.isNew || this.isModified('password')) {
+  // if (this.isNew || this.isModified('password')) {
 
     // save reference to what "this" means
     const document = this;
@@ -145,12 +145,12 @@ UserSchema.pre('save', function createPassword(next) {
         next();
       }
     });
-  }
+  // }
 });
 
 //Dimple's version
 // set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
-
+/*
 UserSchema.pre('update', function updateUserProfile(next) {
 
   // console.log("Inside UserSchema.pre() -> save -> updateUserProfile()");
@@ -174,34 +174,8 @@ UserSchema.pre('update', function updateUserProfile(next) {
   //   });
   next()
 });
-
-/*
-//Ankita's version
-// set up ability to update user password (FOR UPDATING A USER'S PASSWORD)
-UserSchema.pre('update', function updateUserProfile(next) {
-
-  console.log("Inside UserSchema.pre() -> save -> updateUserProfile()");
-
-  // if (this.isNew || this.isModified('password')) {
-
-    // save reference to what "this" means
-    const document = this;
-
-    // run bcrypt's hash method the create password
-    bcrypt.hash(this.password, saltRounds, (err, hashedPassword) => {
-      
-      if (err) {
-        next(err);
-      }
-      else {
-        // save new password
-        document.password = hashedPassword;
-        next();
-      }
-    });
-
-});
 */
+
 
 
 // for logging in, we need to compare the incoming password with the hashed password

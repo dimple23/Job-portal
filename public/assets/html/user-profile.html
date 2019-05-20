@@ -66,16 +66,25 @@
                             <div class="form-group">
                                 <label for="emailId-input"><strong>Email Id</strong></label>
                                 <input class="form-control" type="text" id="emailId-input"
-                                    placeholder="Enter your Email Id" />
+                                    placeholder="Enter your Email Id" disabled/>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <!-- Password -->
                             <div class="form-group">
-                                <label for="password-input"><strong>Password*</strong></label>
-                                <input class="form-control" type="password" id="password-input"
-                                    placeholder="Password" />
+                                <label for="password-input"><strong>Password</strong></label>
+
+                                <div class="row">
+                                    <div class="col-8">
+                                        <input class="form-control" type="password" id="password-input"
+                                            placeholder="Password"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="checkbox" id="checkboxPwdUpd"/>
+                                        <label class="form-check-label mt-1" for="checkboxPwdUpd">Update Password</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -206,7 +215,7 @@
 
                     <div class="row mt-3">
                         <div class="col-6">
-                            <button class="btn btn-info mt-2 mb-2 p-2 btn-block" id="submit" type="submit">
+                            <button class="btn btn-info mt-2 mb-2 p-2 btn-block" id="updateProfileBtn" type="submit">
                                 <h5><strong>Update Profile</strong></h5>
                             </button>
                         </div>

@@ -146,7 +146,7 @@ function printUserSavedJobs(jobData) {
                 .attr("data-toggle", "tooltip")
                 .attr("data-placement", "top")
                 .attr("title", "Remove Job")
-                .attr("id", "save-job")
+                .attr("id", "remove-job")
                 .appendTo($divTitle);
 
 
@@ -204,6 +204,10 @@ function saveJobInDB() {
         })
         .then(function (response) {
             console.log(response);
+
+            //Refresh saved jobs tab
+            getSavedJobsFromDB();
+
             if(response.success === true) {
                 return swal({
                     title: response.message,
@@ -215,6 +219,60 @@ function saveJobInDB() {
             console.log(err);
             handleError(err.responseJSON);
         });
+}
+
+
+
+function deleteJobFromDB() {
+
+    console.log("Inside deleteJobFromDB()");
+
+    const jobData = $(this).parent().parent().data();
+
+    console.log("----------");
+    console.log(jobData._id);
+    console.log("----------");
+
+     // retrieve token
+     const token = localStorage.getItem('accessToken');
+
+     if (!token) {
+         return swal({
+             title: 'You have to be logged in!',
+             icon: 'error'
+         });
+     }
+
+     $.ajax({
+        url: '/api/jobs',
+        method: 'DELETE',
+        data: {
+            jobId: jobData._id
+        },
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
+    .then(function (response) {
+
+        console.log(response);
+
+        //Refresh saved jobs tab
+        getSavedJobsFromDB();
+
+        if(response.success === true) {
+            return swal({
+                title: response.message,
+                icon: 'success'
+            });
+        }
+
+    })
+    .catch(err => {
+        console.log(err);
+        handleError(err.responseJSON);
+    });
+
 }
 
 
@@ -244,12 +302,6 @@ function getSavedJobsFromDB() {
         .then(function (jobsData) {
 
             console.log(jobsData);
-            //Conver Array to object type
-            // jobsData = { 
-            //     ...jobsData
-            // };
-            // console.log(jobsData);
-
             printUserSavedJobs(jobsData);
 
         })
@@ -293,6 +345,8 @@ $(document).ready(function () {
     getJobs("New York, NY");
 
     $('#scrapedJobFeed').on('click', '#save-job', saveJobInDB);
+
+    $('#mySavedJobFeed').on('click', "#remove-job", deleteJobFromDB);
 
 });
 

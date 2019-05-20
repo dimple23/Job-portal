@@ -139,8 +139,76 @@ async function pushToSavedJobsArray(userId, newJobId) {
 
 }
 
+// DELETE jobs for a user '/api/jobs'
+const deleteSavedJob = async (req, res) => {
+
+  console.log("Inside DELETE '/api/jobs' -> deleteSavedJob");
+
+  const userID = req._id;
+  const jobIdToBeDeleted = req.body.jobId;
+  console.log("req.id: " + userID);
+  console.log("req.body.jobId: " + jobIdToBeDeleted);
+
+
+  //Delete the jobId from 'savedJobsArray' in User collection
+  const [userErr, userData] = await handle(User.findById(userID));
+
+  if (userErr) {
+    return res.json(500).json(userErr);
+  }
+
+  let newSavedJobsArray = userData.savedJobsArray;
+  newSavedJobsArray.splice(newSavedJobsArray.indexOf(jobIdToBeDeleted), 1);
+
+  // console.log("-------userData-------");
+  // console.log(userData);
+
+
+  User.findByIdAndUpdate(userID, {
+    savedJobsArray: newSavedJobsArray
+  }, (err, user) => {
+
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Error updating new data."
+      });
+    }
+
+
+    //Delete document from Jobs collection -------------------
+    Jobs.findByIdAndRemove(jobIdToBeDeleted, (err, jobData) => {
+
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Error deleting job."
+        });
+      }
+
+      console.log("jobData after deletion: ");
+      console.log(jobData);
+
+      return res.status(200).json({
+        success: true,
+        message: "Job successfully deleted!"
+      });
+
+    });
+    
+    //-------------------------------------------------------
+
+
+  });
+
+} //End of deleteSavedJob()
+
+
+
+
 
 module.exports = {
   createNewJob,
-  getSavedJobs
+  getSavedJobs,
+  deleteSavedJob
 };

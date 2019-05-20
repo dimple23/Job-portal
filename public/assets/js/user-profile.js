@@ -74,7 +74,7 @@ function updateProfile(event) {
     lastName: $('#lastName-input').val().trim(),
     contact: $("#phoneNo-input").val().trim(),
 
-    // password: $('#password-input').val().trim(),
+    password: $('#password-input').val().trim(),
 
     userLocation: $("#location-input").val().trim(),
     preferredLocation: $("#prefLocation-input").val().trim(),
@@ -100,9 +100,10 @@ function updateProfile(event) {
 
 
   //If user wants to update password then only get the password value from the input
-  if($("#checkboxPwdUpd").is(':checked')){
-    userData.password = $('#password-input').val().trim();
-  }
+  // if($("#checkboxPwdUpd").is(':checked')){
+  //   console.log("Password to be updated...");
+  //   userData.password = $('#password-input').val().trim();
+  // }
 
 
   console.log(userData);
@@ -170,3 +171,4 @@ $(document).ready(function () {
   $("#checkboxPwdUpd").on('click', enablePasswordInputField);
 
 });
+

@@ -1,14 +1,14 @@
-/***************************************************************************************
+/** *************************************************************************************
  * File name: server.js
  * 
  * This file sets up the app, middleware, database and routes
- ***************************************************************************************/
+ ************************************************************************************** */
 
 
-//Import dependencies
+// Import dependencies
 const express = require('express');
 const mongoose = require('mongoose');
-//const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 // set up app
 const app = express();

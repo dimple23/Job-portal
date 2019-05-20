@@ -1,18 +1,27 @@
-/***************************************************************************************
+/** *************************************************************************************
  * File name: jobs-controller.js
  * 
  * This file imports data from 'models' folder  and exposes 2 apis to 
  * see all jobs & create/post a new job in DB
  * Returns: all the data is returned in json format
- ***************************************************************************************/
+ ************************************************************************************** */
 
 /* eslint-disable no-underscore-dangle */
 
-//Import dependencies
+// Import dependencies
 
 const User = require('../models').user;
 const Jobs = require('../models').job;
 const handle = require('../utils/promise-handler');
+
+
+// This function handles the foreach async await problem
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
 
 
 // GET savedjobs Ids '/api/jobs' for a user
@@ -26,11 +35,11 @@ const getSavedJobs = async (req, res) => {
     return res.json(500).json(userErr);
   }
 
-  //Get all the job Ids from 'savedJobsArray[]' that are related to the particular user
+  // Get all the job Ids from 'savedJobsArray[]' that are related to the particular user
   const jobsIds = userData.savedJobsArray;
-  console.log("jobsIds: " + jobsIds);
+  // console.log("jobsIds: " + jobsIds);
 
-  let arrayOfJobsData = [];
+  const arrayOfJobsData = [];
 
   const start = async () => {
 
@@ -42,7 +51,7 @@ const getSavedJobs = async (req, res) => {
         return res.json(500).json(jobErr);
       }
 
-      arrayOfJobsData.push(jobData);
+      return arrayOfJobsData.push(jobData);
 
     })
 
@@ -52,51 +61,7 @@ const getSavedJobs = async (req, res) => {
 
   start();
 
-};
-
-// This function handles the foreach async await problem
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
-
-
-
-// CREATE/POST jobs for a user '/api/jobs'
-const createNewJob = async (req, res) => {
-
-  console.log("Inside POST '/api/jobs' -> createNewJob");
-
-
-  //Fields required (which ever is available):
-  //jobTitle, jobtype, position, salary, location, company, link, description, posted
-
-  // Create a new user using req.body
-  Jobs.create(req.body)
-
-    .then(function (dbNewJobData) {
-
-      // If saved successfully, send the the new job document to the client
-      pushToSavedJobsArray(req._id, dbNewJobData._id);
-
-      res.status(200).json({
-        success: true,
-        message: "Job successfully added!"
-      });
-
-    })
-    .catch(function (err) {
-      // If an error occurs, send the error to the client
-      console.log(err);
-
-      res.status(500).json({
-        success: false,
-        message: "Error adding job details to DB, please try again."
-      });
-
-    });
-
+  return true;
 };
 
 
@@ -104,7 +69,7 @@ async function pushToSavedJobsArray(userId, newJobId) {
 
   console.log("Inside pushToSavedJobsArray()");
 
-  //Update User table with job id of the current saved job
+  // Update User table with job id of the current saved job
   const [userFindErr, userData] = await handle(User.findById(userId));
 
   // console.log("------------------------------");
@@ -139,6 +104,46 @@ async function pushToSavedJobsArray(userId, newJobId) {
 
 }
 
+
+// CREATE/POST jobs for a user '/api/jobs'
+const createNewJob = async (req, res) => {
+
+  console.log("Inside POST '/api/jobs' -> createNewJob");
+
+
+  // Fields required (which ever is available):
+  // jobTitle, jobtype, position, salary, location, company, link, description, posted
+
+  // Create a new user using req.body
+  Jobs.create(req.body)
+
+    .then(function createNewUser(dbNewJobData) {
+
+      // If saved successfully, send the the new job document to the client
+      pushToSavedJobsArray(req._id, dbNewJobData._id);
+
+      res.status(200).json({
+        success: true,
+        message: "Job successfully added!"
+      });
+
+    })
+    .catch(function errFun(err) {
+      // If an error occurs, send the error to the client
+      console.log(err);
+
+      res.status(500).json({
+        success: false,
+        message: "Error adding job details to DB, please try again."
+      });
+
+    });
+
+};
+
+
+
+
 // DELETE jobs for a user '/api/jobs'
 const deleteSavedJob = async (req, res) => {
 
@@ -150,25 +155,22 @@ const deleteSavedJob = async (req, res) => {
   console.log("req.body.jobId: " + jobIdToBeDeleted);
 
 
-  //Delete the jobId from 'savedJobsArray' in User collection
+  // Delete the jobId from 'savedJobsArray' in User collection
   const [userErr, userData] = await handle(User.findById(userID));
 
   if (userErr) {
     return res.json(500).json(userErr);
   }
 
-  let newSavedJobsArray = userData.savedJobsArray;
+  const newSavedJobsArray = userData.savedJobsArray;
   newSavedJobsArray.splice(newSavedJobsArray.indexOf(jobIdToBeDeleted), 1);
-
-  // console.log("-------userData-------");
-  // console.log(userData);
 
 
   User.findByIdAndUpdate(userID, {
     savedJobsArray: newSavedJobsArray
-  }, (err, user) => {
+  }, (error, user) => {
 
-    if (err) {
+    if (error) {
       return res.status(500).json({
         success: false,
         message: "Error updating new data."
@@ -176,7 +178,7 @@ const deleteSavedJob = async (req, res) => {
     }
 
 
-    //Delete document from Jobs collection -------------------
+    // Delete document from Jobs collection -------------------
     Jobs.findByIdAndRemove(jobIdToBeDeleted, (err, jobData) => {
 
       if (err) {
@@ -195,13 +197,12 @@ const deleteSavedJob = async (req, res) => {
       });
 
     });
-    
-    //-------------------------------------------------------
 
-
+    return true;
   });
 
-} //End of deleteSavedJob()
+  return true; 
+} // End of deleteSavedJob()
 
 
 

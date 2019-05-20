@@ -1,12 +1,12 @@
-/***************************************************************************************
+/** *************************************************************************************
  * File name: indeed-scrape.js
  * 
  * This file scrapes job postings from indeed.com
  * returns all the data in json format
- ***************************************************************************************/
+ ************************************************************************************** */
 
 
-//Import dependencies
+// Import dependencies
 const axios = require('axios');
 const cheerio = require("cheerio");
 const handle = require('../utils/promise-handler');
@@ -32,16 +32,16 @@ function indeedJobs(location) {
         // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
         const $ = cheerio.load(data);
 
-        //Fields required (which ever is available):
-        //jobTitle, jobtype, position, salary, location, company, link, description, posted
+        // Fields required (which ever is available):
+        // jobTitle, jobtype, position, salary, location, company, link, description, posted
 
         // An empty array to save the data that we'll scrape
-        var allScrapedJobs = [];
+        let allScrapedJobs = [];
 
-        var jobs = $('#resultsCol').children('.row');
-        jobs.each(function (i, e) {
+        const jobs = $('#resultsCol').children('.row');
+        jobs.each(function scrapeJob(i, e) {
 
-            let jobData = {
+            const jobData = {
                 jobTitle: $(e).find('.jobtitle').text().trim(),
                 salary: $(e).find('div > span.salary').text().trim(),
                 location: $(e).find('.location').text().trim(),
@@ -57,7 +57,7 @@ function indeedJobs(location) {
         // console.log(allScrapedJobs);
 
         // returns scraped data
-        resolve(allScrapedJobs);
+        return resolve(allScrapedJobs);
     });
 
 

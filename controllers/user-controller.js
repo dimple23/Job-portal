@@ -1,4 +1,4 @@
-/***************************************************************************************
+/** *************************************************************************************
  * File name: user-controller.js
  * 
  * This file imports jsonwebtoken for creating bearer token for authentication, 
@@ -6,14 +6,13 @@
  * import promise-handler from utils folder
  * and exposes 3 apis to getUserProfile, login and register the user into the app
  * Returns: all the data is returned in json format
- ***************************************************************************************/
+ ************************************************************************************** */
 
 
 /* eslint-disable no-underscore-dangle */
 
-//Import dependencies
+// Import dependencies
 const jwt = require('jsonwebtoken');
-const mongojs = require('mongojs'); //Dimple
 require('dotenv').config();
 
 const User = require('../models').user;
@@ -27,12 +26,12 @@ console.log("secret: " + secret);
 
 
 
-/*****************************************************************************************
+/** ***************************************************************************************
  * Function: register()
  * This function is triggerend when new user tries to register him/herself to the app
  * It stores user info to the DB
  * It is used when the POST route '/api/user/register' is hit
- *****************************************************************************************/
+ **************************************************************************************** */
 
 const register = (req, res) => {
 
@@ -59,8 +58,6 @@ const register = (req, res) => {
 
   // run setFullName()
   user.setFullName();
-  user.checkBox();
-
 
   // create/save new user (this will trigger the password creation method we set up in the User model)
   user.save(err => {
@@ -78,18 +75,18 @@ const register = (req, res) => {
     }
   });
 
-} //End of register()
+} // End of register()
 
 
 
 
 
-/*****************************************************************************************
+/** ***************************************************************************************
  * Function: login()
  * This function is triggerend when already registered user tries to login to the app
  * It verifies user info from the DB and fetches user data
  * It will run when user POSTs to '/api/user/login'
- *****************************************************************************************/
+ **************************************************************************************** */
 
 const login = async (req, res) => {
 
@@ -147,13 +144,13 @@ const login = async (req, res) => {
 
   }
 
-} //End of login()
+} // End of login()
 
 
-/*****************************************************************************************
+/** ***************************************************************************************
  * Function: getUserProfile()
  * It will run GET '/api/user' (this will be run through auth middleware)
- *****************************************************************************************/
+ **************************************************************************************** */
 
 const getUserProfile = async (req, res) => {
 
@@ -167,81 +164,22 @@ const getUserProfile = async (req, res) => {
     res.status(200).json(userProfile);
   }
 
-} //End of getUserProfile()
+} // End of getUserProfile()
 
 
 
-/*****************************************************************************************
+/** ***************************************************************************************
  * Function: updateUserProfile()
  * This function updates user data when user updates his/her profile page
  * It will run PUT update user '/api/user/update'
- *****************************************************************************************/
+ **************************************************************************************** */
 
-//Dimple's version
-/*
-const updateUserProfile = async (req, res) => {
-
-  console.log("Inside PUT '/api/user/update' -> updateUserProfile");
-  // console.log(req.body)
-
-  // const [userErr, userProfile] = await handle(User.findById(req._id));
-  // console.log(req._id);
-  // console.log(userProfile);
-
-  // if (userErr) {
-  //   res.status(500).json(userErr);
-  // } else {
-
-  //   for (let key in req.body) {
-  //     userProfile[key] = req.body[key];
-  //   }
-  // Update the note that matches the object id
-  User.update({
-      _id: mongojs.ObjectId(req._id)
-    }, {
-      // Set the title, note and modified parameters
-      // sent in the req body.
-      $set: req.body
-    },
-    function (error, edited) {
-      // Log any errors from mongojs
-      if (error) {
-        console.log("error" + error);
-        res.send(error);
-      } else {
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
-        console.log(edited);
-        res.send(edited);
-      }
-    }
-  );
-
-  // userProfile.save(err => {
-  //   console.log(userProfile)
-  //   if (err) {
-
-  //     console.log("Thos is Error" + err);
-  //     res.status(500).json({
-  //       success: false,
-  //       message: "Error updating new data."
-  //     });
-  //   } else {
-  //     res.status(200).json(userProfile);
-  //   }
-  // });
-  //}
-
-} //End of updateUserProfile()
-*/
-
-//Ankita's version
 const updateUserProfile = async (req, res) => {
 
   console.log("Inside PUT '/api/user/update' -> updateUserProfile");
 
-  console.log("-----req.body------");
-  console.log(req.body);
+  // console.log("-----req.body------");
+  // console.log(req.body);
 
   const [userErr, userProfile] = await handle(User.findById(req._id));
 
@@ -249,7 +187,7 @@ const updateUserProfile = async (req, res) => {
     res.status(500).json(userErr);
   } else {
 
-    for (let key in req.body) {
+    for (const key in req.body) {
       userProfile[key] = req.body[key];
     }
 
@@ -269,7 +207,7 @@ const updateUserProfile = async (req, res) => {
     });
   }
 
-} //End of updateUserProfile()
+} // End of updateUserProfile()
 
 
 

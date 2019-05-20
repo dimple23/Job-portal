@@ -1,8 +1,8 @@
-/***************************************************************************************
+/** *************************************************************************************
  * File name: authentication.js
  * 
  * This file performs authentication using the secret saved in .env
- ***************************************************************************************/
+ ************************************************************************************** */
 
 
 /* eslint-disable no-underscore-dangle */
@@ -11,13 +11,13 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 // set up secret for JWT (json web token)...typically you'd hide this in a .env
-//const secret = 'mysecretsshhhhh';
+// const secret = 'mysecretsshhhhh';
 const secret = process.env.SECRET;
 
 
 const withAuth = (req, res, next) => {
 
-  //In our code we'll be using 'req.headers.authorization'
+  // In our code we'll be using 'req.headers.authorization'
   let token =
     req.body.token ||
     req.query.token ||
@@ -27,7 +27,7 @@ const withAuth = (req, res, next) => {
 
 
   // ["Bearer", "<tokenvalue>"]
-  //Trip "Bearer " keyword from the response
+  // Trip "Bearer " keyword from the response
   if (req.headers.authorization) {
     token = token
       .split(' ')
@@ -51,7 +51,7 @@ const withAuth = (req, res, next) => {
         });
       } 
       else {
-        //Save email Id and user id
+        // Save email Id and user id
         req.email = decoded.email;
         req._id = decoded._id;
         next();

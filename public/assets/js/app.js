@@ -1,4 +1,3 @@
-
 //show navbar by scrol up
 
 $(window).scroll(function () {
@@ -71,8 +70,8 @@ function signUp(event) {
     .then(function () {
       // custom bootstrap method
       // $('#signup').tab('hide'); //It's giving error
-      $('#login').tab('show');
       $('#signup').hide();
+      $('#login').tab('show');
       //$('.loginRegisterFormClass').hide();
 
       //Set user name field to the current user

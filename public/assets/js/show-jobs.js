@@ -106,8 +106,11 @@ function printUserSavedJobs(jobData) {
     jobData.forEach(
         (jobInfo) => {
 
-            // console.log(jobInfo);
+            console.log(jobInfo);
 
+            if(jobInfo.posted !== "Unavailable") {
+                console.log("jobInfo.posted: " + jobInfo.posted);
+            }
             let optionalDataString = "";
 
             if (jobInfo.company)
@@ -119,9 +122,10 @@ function printUserSavedJobs(jobData) {
             if (jobInfo.salary)
                 optionalDataString += " | " + jobInfo.salary;
 
-            if (jobInfo.posted)
+            if (jobInfo.posted !== "Unavailable")
                 optionalDataString += " | " + jobInfo.posted;
 
+            console.log("optionalDataString: " + optionalDataString);
 
             // create a list item using jQuery
             let $li = $("<li>");

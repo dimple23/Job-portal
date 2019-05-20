@@ -1,17 +1,13 @@
-/* **************************************************************************************
+/** *************************************************************************************
  * File name: dice-scrape.js
  * 
  * This file scrapes job postings from dice.com 
  * returns all the data in json format
  ************************************************************************************** */
-
-
 // Import dependencies
 const axios = require('axios');
 const cheerio = require("cheerio");
 const handle = require('../utils/promise-handler');
-
-
 // scrape dice.com & send to front end when GET '/api/scrape' is hit
 function diceJobs(location) {
 
@@ -34,10 +30,10 @@ function diceJobs(location) {
         const $ = cheerio.load(data);
 
         // An empty array to save the data that we'll scrape
-        let allScrapedJobs = [];
+        const allScrapedJobs = [];
 
-        //Fields required (which ever is available):
-        //jobTitle, jobtype, position, salary, location, company, link, description, posted
+        // Fields required (which ever is available):
+        // jobTitle, jobtype, position, salary, location, company, link, description, posted
 
         const jobs = $('.complete-serp-result-div');
 

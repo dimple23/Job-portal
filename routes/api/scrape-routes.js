@@ -1,12 +1,12 @@
 
-/***************************************************************************************
+/** *************************************************************************************
  * File name: scrape-routes.js
  * 
  * This file collects the scrape routes and provides the endpoint names
- ***************************************************************************************/
+ ************************************************************************************** */
 
 
-//Import express.router() functionality
+// Import express.router() functionality
 const router = require('express').Router();
 
 // Import methods we exported from scraping-controller

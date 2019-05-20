@@ -1,20 +1,22 @@
-/***************************************************************************************
+
+/**  *************************************************************************************
  * File name: job.js
  * 
  * This file creates Job schema 
- ***************************************************************************************/
+ **************************************************************************************  */
 
-//Import dependencies
+// Import dependencies
 const mongoose = require('mongoose');
+
 const {
  Schema
 } = mongoose;
 
 
-//Create fields for the 'JobPortalSchema' collection
+// Create fields for the 'JobPortalSchema' collection
 const JobPortalSchema = new Schema({
 
- jobTitle: { //indeed dice
+ jobTitle: { // indeed dice
    type: String,
    required: true
  },
@@ -26,15 +28,15 @@ const JobPortalSchema = new Schema({
    type: String,
    default: 'Unavailable'
  },
- salary: { //indeed
+ salary: { // indeed
    type: String,
    default: 'Unavailable'
  },
- location: { //indeed dice
+ location: { // indeed dice
    type: String,
    default: 'Unavailable'
  },
- company: { //indeed dice
+ company: { // indeed dice
    type: String,
    default: 'Unavailable'
  },
@@ -42,11 +44,11 @@ const JobPortalSchema = new Schema({
    type: String,
    default: 'Unavailable'
  },
- description: { //indeed dice
+ description: { // indeed dice
    type: String,
    default: 'Unavailable'
  },
- posted: { //dice
+ posted: { // dice
    type: String,
    default: 'Unavailable'
  },
@@ -57,5 +59,5 @@ const JobPortalSchema = new Schema({
 });
 
 
-//Export "jobs" table
+// Export "jobs" table
 module.exports = mongoose.model("jobs", JobPortalSchema);

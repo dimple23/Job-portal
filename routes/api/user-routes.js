@@ -1,17 +1,17 @@
 
-/***************************************************************************************
+/** *************************************************************************************
  * File name: user-routes.js
  * 
  * This file collects the user routes and provides the endpoint names
- ***************************************************************************************/
+ ************************************************************************************** */
 
-//Import express.router() functionality
+// Import express.router() functionality
 const router = require('express').Router();
 
 // Import methods we exported from user-controller
 const {register, login, getUserProfile, updateUserProfile } = require('../../controllers/user-controller');
 
-//Import authentication method 
+// Import authentication method 
 const withAuth = require('../../middleware/authentication');
 
 
